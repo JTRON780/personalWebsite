@@ -48,6 +48,11 @@ body {
   cursor: none;
 }
 
+/* Hide default cursor for clickable elements on desktop */
+button, a, input, textarea, [role="button"] {
+  cursor: none;
+}
+
 /* Show default cursor on touch devices */
 @media (hover: none) and (pointer: coarse) {
   body {

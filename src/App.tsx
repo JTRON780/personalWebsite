@@ -51,6 +51,7 @@ const CustomCursor = () => {
         left: 0;
         transform: translate(-50%, -50%);
         transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+        display: none;
       `;
 
       // Create the dot cursor
@@ -68,6 +69,7 @@ const CustomCursor = () => {
         left: 0;
         transform: translate(-50%, -50%);
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        display: none;
       `;
 
       document.body.appendChild(cursor);
@@ -79,6 +81,7 @@ const CustomCursor = () => {
       let targetY = 0;
       let requestAnimationId: number;
 
+      let hasShown = false;
       const moveCursor = (e: MouseEvent) => {
         targetX = e.clientX;
         targetY = e.clientY;
@@ -87,15 +90,13 @@ const CustomCursor = () => {
       };
 
       const handleMouseOver = () => {
-        cursor.style.width = '48px';
-        cursor.style.height = '48px';
-        cursor.style.borderColor = '#6366f1';
+        cursor.style.borderWidth = '4px';
+        cursor.style.borderColor = '#22d3ee'; // cyan-400
       };
 
       const handleMouseOut = () => {
-        cursor.style.width = '32px';
-        cursor.style.height = '32px';
-        cursor.style.borderColor = '#4f46e5';
+        cursor.style.borderWidth = '2px';
+        cursor.style.borderColor = '#4f46e5'; // indigo-700
       };
 
       const lerp = (start: number, end: number, factor: number) => {
@@ -111,24 +112,87 @@ const CustomCursor = () => {
       };
       requestAnimationId = requestAnimationFrame(render);
 
-      // Add hover effect to all clickable elements
-      const clickableElements = document.querySelectorAll('button, a, input, textarea, [role="button"]');
-      clickableElements.forEach(element => {
-        element.addEventListener('mouseover', handleMouseOver);
-        element.addEventListener('mouseout', handleMouseOut);
-      });
+      // Use event delegation for hover effect on all future and current clickable elements
+      const isClickable = (el: Element | null) => {
+        if (!el) return false;
+        return (
+          el.tagName === 'BUTTON' ||
+          el.tagName === 'A' ||
+          el.tagName === 'INPUT' ||
+          el.tagName === 'TEXTAREA' ||
+          el.getAttribute('role') === 'button' ||
+          el.getAttribute('tabindex') !== null
+        );
+      };
+
+      const delegatedMouseOver = (e: MouseEvent) => {
+        if (isClickable(e.target as Element)) {
+          handleMouseOver();
+        }
+      };
+      const delegatedMouseOut = (e: MouseEvent) => {
+        if (isClickable(e.target as Element)) {
+          handleMouseOut();
+        }
+      };
+      document.addEventListener('mouseover', delegatedMouseOver);
+      document.addEventListener('mouseout', delegatedMouseOut);
 
       document.addEventListener('mousemove', moveCursor);
-      
+
+      // Show/hide cursor on mouse enter/leave
+      const showCursor = (e?: MouseEvent) => {
+        cursor.style.display = 'block';
+        dot.style.display = 'block';
+        // Force update position to avoid flicker
+        if (e) {
+          targetX = e.clientX;
+          targetY = e.clientY;
+          dot.style.transform = `translate(${targetX}px, ${targetY}px)`;
+          cursorX = targetX - 14;
+          cursorY = targetY - 14;
+          cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        }
+        // Force cursor: none on html/body in case browser resets it
+        document.documentElement.style.cursor = 'none';
+        document.body.style.cursor = 'none';
+      };
+      const hideCursor = () => {
+        cursor.style.display = 'none';
+        dot.style.display = 'none';
+      };
+      document.addEventListener('mouseenter', showCursor);
+      document.addEventListener('mouseleave', hideCursor);
+
+      // Show cursor on first mousemove after load (for reload edge case)
+      const showOnFirstMove = (e: MouseEvent) => {
+        // Set position before showing
+        targetX = e.clientX;
+        targetY = e.clientY;
+        dot.style.transform = `translate(${targetX}px, ${targetY}px)`;
+        cursorX = targetX - 14;
+        cursorY = targetY - 14;
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        showCursor();
+        hasShown = true;
+        document.removeEventListener('mousemove', showOnFirstMove);
+      };
+      document.addEventListener('mousemove', showOnFirstMove);
+
+      // Hide cursor initially
+      cursor.style.display = 'none';
+      dot.style.display = 'none';
+
       return () => {
         cancelAnimationFrame(requestAnimationId);
         document.removeEventListener('mousemove', moveCursor);
-        clickableElements.forEach(element => {
-          element.removeEventListener('mouseover', handleMouseOver);
-          element.removeEventListener('mouseout', handleMouseOut);
-        });
+        document.removeEventListener('mouseenter', showCursor);
+        document.removeEventListener('mouseleave', hideCursor);
+        document.removeEventListener('mouseover', delegatedMouseOver);
+        document.removeEventListener('mouseout', delegatedMouseOut);
         document.body.removeChild(cursor);
         document.body.removeChild(dot);
+        document.removeEventListener('mousemove', showOnFirstMove);
       };
     }
   }, [isTouchDevice]);
