@@ -1,14 +1,25 @@
 import { motion } from 'framer-motion'
 import { Typewriter } from 'react-simple-typewriter'
 import viteLogo from '/vite.svg'
+import skyline from '../../bostonSkyline.png'
 
 interface HomeProps {
   scrollToSection: (id: string) => void;
 }
 
 const Home = ({ scrollToSection }: HomeProps) => (
-  <div className="flex flex-col md:flex-row items-center justify-between w-full min-h-[70vh] gap-4 px-2 md:px-8">
-    <div className="md:w-7/12 w-full text-left">
+  <div
+    className="relative flex flex-col md:flex-row items-center justify-between w-full min-h-[70vh] gap-4 px-2 md:px-8 overflow-hidden"
+    style={{}}
+  >
+    {/* Skyline background */}
+    <img
+      src={skyline}
+      alt="Boston Skyline"
+      className="absolute left-0 bottom-0 w-full max-h-[300px] object-cover opacity-60 pointer-events-none select-none z-0"
+      aria-hidden="true"
+    />
+    <div className="relative z-10 md:w-7/12 w-full text-left">
       <h1 className="text-4xl md:text-5xl font-bold mb-2">
         Hi There!{' '}
         <span className="wave inline-block" role="img" aria-label="wave">
@@ -22,7 +33,7 @@ const Home = ({ scrollToSection }: HomeProps) => (
       <div className="py-4">
         <span className="text-xl text-gray-700 dark:text-gray-200">
           <Typewriter
-            words={['Developer', 'Student', 'Tech Enthusiast']}
+            words={['Developer', 'Student', 'Tech Enthusiast', 'Innovator', 'Artist', 'Software Engineer', 'Leader']}
             loop={0}
             cursor
             cursorStyle="|"
@@ -47,7 +58,7 @@ const Home = ({ scrollToSection }: HomeProps) => (
         </button>
       </div>
     </div>
-    <div className="md:w-5/12 w-full flex justify-center md:justify-end py-6 md:py-0">
+    <div className="relative z-10 md:w-5/12 w-full flex justify-center md:justify-end py-6 md:py-0">
       <img
         src={viteLogo}
         alt="home pic"
