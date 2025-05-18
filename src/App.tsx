@@ -240,17 +240,17 @@ function App() {
     <div className="min-h-screen w-full bg-gradient-to-br from-violet-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <CustomCursor />
       <nav className="fixed w-full left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-lg z-40">
-        <div className="flex justify-center items-center h-16 w-full px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-center items-center h-16 w-full px-2 xs:px-3 sm:px-4 lg:px-8">
           <div className="flex flex-1 items-center justify-between w-full max-w-none">
             <div className="flex-shrink-0 flex items-center">
-              <button onClick={() => scrollToSection('home')} className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 text-transparent bg-clip-text">Johan Lakshmanan</button>
+              <button onClick={() => scrollToSection('home')} className="text-base xs:text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 text-transparent bg-clip-text truncate">Johan Lakshmanan</button>
             </div>
-            <div className="hidden md:flex md:items-center md:space-x-8 justify-center flex-1">
+            <div className="hidden md:flex md:items-center md:space-x-4 lg:space-x-8 justify-center flex-1">
               {sectionIds.map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors capitalize ${activeSection === section ? 'font-bold text-indigo-600 dark:text-indigo-400 underline underline-offset-4' : ''}`}
+                  className={`text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors capitalize text-sm lg:text-base ${activeSection === section ? 'font-bold text-indigo-600 dark:text-indigo-400 underline underline-offset-4' : ''}`}
                 >
                   {section}
                 </button>
@@ -275,7 +275,7 @@ function App() {
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors capitalize ${activeSection === section ? 'font-bold text-indigo-600 dark:text-indigo-400 underline underline-offset-4' : ''}`}
+                className={`block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors capitalize ${activeSection === section ? 'font-bold text-indigo-600 dark:text-indigo-400 underline underline-offset-4' : ''}`}
               >
                 {section}
               </button>

@@ -45,13 +45,13 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="w-full px-4"
+      className="w-full px-2 xs:px-3 sm:px-4"
     >
-      <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-indigo-600 to-violet-600 text-transparent bg-clip-text">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 md:mb-12 text-center bg-gradient-to-r from-indigo-600 to-violet-600 text-transparent bg-clip-text">
         Get in Touch
       </h2>
-      <div className="max-w-2xl mx-auto bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl shadow-xl p-4 sm:p-8 border border-gray-200 dark:border-gray-700">
-        <div className="mb-8 text-center text-lg text-gray-700 dark:text-gray-300 space-y-2">
+      <div className="max-w-2xl mx-auto bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl shadow-xl p-3 xs:p-4 sm:p-6 md:p-8 border border-gray-200 dark:border-gray-700">
+        <div className="mb-4 sm:mb-6 md:mb-8 text-center text-base sm:text-lg text-gray-700 dark:text-gray-300 space-y-1 sm:space-y-2">
           <div>
             <span className="font-semibold">Email:</span> <a href="mailto:johan.lakshmanan@gmail.com" className="text-indigo-600 dark:text-indigo-400 hover:underline break-all">johan.lakshmanan@gmail.com</a>
           </div>
@@ -59,9 +59,9 @@ const Contact = () => {
             <span className="font-semibold">Phone:</span> <a href="tel:3392061334" className="text-indigo-600 dark:text-indigo-400 hover:underline">339-206-1334</a>
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            <label htmlFor="name" className="block text-sm font-medium mb-1 sm:mb-2 text-gray-700 dark:text-gray-300">
               Name
             </label>
             <input
@@ -69,12 +69,12 @@ const Contact = () => {
               id="name"
               value={formData.name}
               onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-              className="w-full px-3 py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-base"
+              className="w-full px-2 sm:px-3 py-2 sm:py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm sm:text-base"
               required
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            <label htmlFor="email" className="block text-sm font-medium mb-1 sm:mb-2 text-gray-700 dark:text-gray-300">
               Email
             </label>
             <input
@@ -82,12 +82,12 @@ const Contact = () => {
               id="email"
               value={formData.email}
               onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-              className="w-full px-3 py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-base"
+              className="w-full px-2 sm:px-3 py-2 sm:py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm sm:text-base"
               required
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            <label htmlFor="message" className="block text-sm font-medium mb-1 sm:mb-2 text-gray-700 dark:text-gray-300">
               Message
             </label>
             <textarea
@@ -95,7 +95,7 @@ const Contact = () => {
               rows={4}
               value={formData.message}
               onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-              className="w-full px-3 py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-base"
+              className="w-full px-2 sm:px-3 py-2 sm:py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm sm:text-base"
               required
             ></textarea>
           </div>
@@ -104,9 +104,9 @@ const Contact = () => {
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isSubmitting}
-            className={`w-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-8 py-4 rounded-lg transition-all ${
+            className={`w-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg transition-all ${
               isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:opacity-90'
-            } animate-glow text-base`}
+            } animate-glow text-sm sm:text-base`}
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </motion.button>
