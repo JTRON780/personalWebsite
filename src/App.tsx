@@ -6,7 +6,7 @@ const Home = lazy(() => import('./components/Home'))
 const Internships = lazy(() => import('./components/Internships'))
 const Projects = lazy(() => import('./components/Projects'))
 const Skills = lazy(() => import('./components/Skills'))
-const Resume = lazy(() => import('./components/Resume'))
+const ResumeEmbed = lazy(() => import('./components/ResumeEmbed'))
 const Contact = lazy(() => import('./components/Contact'))
 
 const LoadingSpinner = () => (
@@ -81,7 +81,6 @@ const CustomCursor = () => {
       let targetY = 0;
       let requestAnimationId: number;
 
-      let hasShown = false;
       const moveCursor = (e: MouseEvent) => {
         targetX = e.clientX;
         targetY = e.clientY;
@@ -174,7 +173,6 @@ const CustomCursor = () => {
         cursorY = targetY - 14;
         cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
         showCursor();
-        hasShown = true;
         document.removeEventListener('mousemove', showOnFirstMove);
       };
       document.addEventListener('mousemove', showOnFirstMove);
@@ -336,7 +334,7 @@ function App() {
               transition={{ duration: 0.6 }}
               className="max-w-screen-2xl mx-auto w-full"
             >
-              <Resume />
+              <ResumeEmbed />
             </motion.div>
           </section>
 

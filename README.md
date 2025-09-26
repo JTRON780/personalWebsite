@@ -8,7 +8,7 @@ Showcase the professional experience, projects, skills, and contact information 
 
 ## Features
 
-- Animated, section-based navigation (Home, Internships, Projects, Skills, Resume, Contact)
+- Animated, section-based navigation (Home, Internships, Projects, Skills, Resume (PDF), Contact)
 - Custom animated cursor for desktop
 - Responsive design with mobile menu
 - Smooth scrolling and animated transitions (Framer Motion)
@@ -58,9 +58,20 @@ npm run lint
 
 ## Project Structure
 
-- `src/components/` – Main sections (Home, Internships, Projects, Skills, Resume, Contact)
+- `src/components/` – Main sections (Home, Internships, Projects, Skills, ResumeEmbed, Contact)
 - `src/App.tsx` – Main app layout and navigation
 - `src/assets/` – Static assets
+
+### Resume PDF
+
+Place an up-to-date `resume.pdf` in the `public/` directory (path: `public/resume.pdf`). The Resume section provides:
+
+- Inline embedded preview (iframe)
+- Download button
+- Open in new tab
+- Optional print shortcut
+
+If the file is missing a warning box is shown instead of a broken embed.
 
 ## Author
 

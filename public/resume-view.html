@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume – Johan Lakshmanan</title>
+  <meta name="description" content="Resume PDF viewer for Johan Lakshmanan" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f5f7fb;
+      --bg-dark: #0f172a;
+      --border: #d0d7e2;
+      --border-dark: #334155;
+      --accent: #4f46e5;
+      --accent-fade: #6366f170;
+      --text: #1e293b;
+      --text-dark: #e2e8f0;
+    }
+    html, body { margin:0; padding:0; font-family: system-ui, Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen; background: var(--bg); color: var(--text); min-height:100%; }
+    @media (prefers-color-scheme: dark) { body { background: var(--bg-dark); color: var(--text-dark); } }
+    .wrapper { max-width: 1100px; margin: 2rem auto 3rem; padding: clamp(1rem,2vw,2rem); }
+    header { display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+  h1 { font-size:clamp(1.35rem,2.2vw,1.9rem); margin:0; background:linear-gradient(90deg,#4f46e5,#7c3aed); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .actions { display:flex; flex-wrap:wrap; gap:.6rem; }
+    .actions a, .actions button { appearance:none; border:1px solid var(--accent); background:var(--accent); color:#fff; padding:.55rem .95rem; font-size:.8rem; font-weight:600; letter-spacing:.5px; border-radius:.55rem; cursor:pointer; text-decoration:none; display:inline-flex; gap:.4rem; align-items:center; transition:.25s background,.25s color; }
+    .actions a.secondary, .actions button.secondary { background:transparent; color:var(--accent); }
+    .actions a.secondary:hover, .actions button.secondary:hover { background:var(--accent-fade); }
+    .actions a:hover, .actions button:hover { filter:brightness(1.07); }
+    .frame-shell { position:relative; border:1px solid var(--border); background:#fff; border-radius:18px; padding:1rem 1rem 0.75rem; box-shadow:0 4px 18px -6px rgba(0,0,0,.12),0 8px 32px -4px rgba(79,70,229,.15); overflow:hidden; }
+    @media (prefers-color-scheme: dark){ .frame-shell { background:#1e293b; border-color:var(--border-dark); } }
+    .window-bar { display:flex; gap:.5rem; margin-bottom:.75rem; }
+    .dot { width:12px; height:12px; border-radius:50%; background:#f87171; box-shadow:16px 0 0 #facc15,32px 0 0 #34d399; opacity:.9; }
+    iframe { width:100%; height:calc(100vh - 270px); min-height:500px; border:0; background:#fff; border-radius:10px; box-shadow:0 0 0 1px rgba(0,0,0,.04); }
+    footer { margin-top:1.25rem; font-size:.65rem; opacity:.7; text-align:center; }
+    .missing { border:1px solid #fbbf24; background:#fefce8; padding:1.25rem 1rem; border-radius:.85rem; font-size:.85rem; line-height:1.3; }
+    @media (prefers-color-scheme: dark){ .missing { background:#43380a; border-color:#d97706; color:#fde68a; } }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Resume PDF</h1>
+      <div class="actions">
+        <a href="/" class="secondary" title="Back to site">← Back</a>
+        <a href="/resume.pdf" download title="Download the PDF">Download</a>
+        <a href="/resume.pdf" target="_blank" rel="noopener" class="secondary" title="Open raw PDF">Raw PDF</a>
+        <button class="secondary" id="printBtn" title="Print">Print</button>
+      </div>
+    </header>
+    <div id="content"></div>
+    <footer>Embedded view wrapper • Custom layout for centered presentation • If you see issues, refresh.</footer>
+  </div>
+  <script>
+    const container = document.getElementById('content');
+    fetch('/resume.pdf', { method:'HEAD' }).then(r => {
+      if (r.ok) {
+        container.innerHTML = `<div class="frame-shell"><div class="window-bar"><span class="dot"></span></div><iframe title="Resume" src="/resume.pdf#view=FitH&toolbar=0&navpanes=0"></iframe></div>`;
+      } else {
+        container.innerHTML = `<div class='missing'><strong>Resume not found.</strong><br/> Add <code>public/resume.pdf</code> and reload this page.</div>`;
+      }
+    }).catch(() => {
+      container.innerHTML = `<div class='missing'><strong>Unable to load resume.</strong><br/> Check your network or add <code>public/resume.pdf</code>.</div>`;
+    });
+    document.getElementById('printBtn').addEventListener('click', () => {
+      const w = window.open('/resume.pdf','_blank','noopener');
+      if (w) setTimeout(() => w.print(), 600);
+    });
+  </script>
+</body>
+</html>
