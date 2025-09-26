@@ -169,7 +169,7 @@ const Internships = () => {
 
         <p className="sr-only" aria-live="polite">Currently viewing experience {activeIndex + 1} of {experience.length}</p>
 
-        <div className="space-y-28 snap-y snap-mandatory">
+  <div className="space-y-28">
           {experience.map((exp, i) => {
             const isActive = i === activeIndex
             const colors = getColorsForIndex(i)
@@ -187,7 +187,7 @@ const Internships = () => {
                 viewport={{ amount: 0.55, once: false }}
                 tabIndex={0}
                 aria-current={isActive}
-                className={`relative rounded-2xl border backdrop-blur-sm transition-all duration-500 px-0 pt-0 pb-8 shadow-lg scroll-mt-32 snap-start focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/70 overflow-hidden
+                className={`relative rounded-2xl border backdrop-blur-sm transition-all duration-500 px-0 pt-0 pb-8 shadow-lg scroll-mt-32 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/70 overflow-hidden
                   ${isActive
                     ? 'bg-white/75 dark:bg-gray-800/70 border-transparent'
                     : 'bg-white/45 dark:bg-gray-800/40 border-transparent'}
