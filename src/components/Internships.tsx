@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { experience } from '../data/profile'
 
 const DynamicLogo = ({ src, alt }: { src: string; alt: string }) => {
   const [isRect, setIsRect] = useState<boolean | null>(null)
@@ -58,74 +59,40 @@ const InternshipCard = ({ title, role, date, description, location, logo }: {
   </motion.div>
 )
 
-const Internships = () => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.6 }}
-    className="w-full px-4"
-  >
-    <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-indigo-600 to-violet-600 text-transparent bg-clip-text">Professional Experience</h2>
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      <InternshipCard 
-        title="Fidelity Investments"
-        role="Incoming Quantitative ECM Intern"
-        date="Jan 2025 - Present"
-        location="Boston, MA"
-        logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjp7mSjC2egqIxP4XMrA-mKs6jlyi2fhgmbQ&s"
-        description={
-          <p className="text-gray-600 dark:text-gray-300">
-            Working on optimizing execution quality with Systematic Trading and Analytics Platform, applying quantitative research across algorithms and analytics.
-          </p>
-        }
-      />
-
-      <InternshipCard 
-        title="Waters Corporation"
-        role="Software Engineering (RPA) Intern"
-        date="May 2024 - Aug 2024"
-        location="Milford, MA"
-        logo="https://ispe.org/sites/default/files/2021-03/Waters%20%20logo.jpg"
-        description={
-          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-            <li>Built automated renewal quote system with Python and SQL</li>
-            <li>Integrated AI automation with C# in UI Path</li>
-            <li>Developed Intune-SharePoint integration</li>
-          </ul>
-        }
-      />
-
-      <InternshipCard 
-        title="Build UMass"
-        role="Software Developer"
-        date="Feb 2024 - Present"
-        location="Amherst, MA"
-        logo="https://media.licdn.com/dms/image/v2/C4D0BAQEOOjB5evIbRA/company-logo_200_200/company-logo_200_200/0/1630469396055/buildumass_logo?e=2147483647&v=beta&t=VtF-iFtqZCiLipdsy6VXca84vuLWD8tDSEOQByF7lfM"
-        description={
-          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-            <li>Leading MERN stack development for IUCG website</li>
-            <li>Improved website performance by 30%</li>
-            <li>Working in agile environment with cross-functional team</li>
-          </ul>
-        }
-      />
-
-      <InternshipCard 
-        title="MIT Lincoln Laboratory"
-        role="Embedded Systems Researcher"
-        date="May 2021 - Aug 2022"
-        location="Cambridge, MA"
-        logo="https://pbs.twimg.com/profile_images/1380233126354558979/ltnN7Gl4_400x400.jpg"
-        description={
-          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-            <li>1st place in BWSI Penetration Testing competition</li>
-            <li>Developed secure bootloader for Stellaris microcontrollers</li>
-            <li>Built penetration testing frameworks</li>
-          </ul>
-        }
-      />
-    </div>
-  </motion.div>
-)
+const Internships = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="w-full px-4"
+    >
+      <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-indigo-600 to-violet-600 text-transparent bg-clip-text">Professional Experience</h2>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-screen-2xl mx-auto">
+        {experience.map(exp => (
+          <InternshipCard
+            key={exp.company + exp.start}
+            title={exp.company}
+            role={exp.role}
+            date={`${exp.start} - ${exp.end}`}
+            location={exp.location}
+            logo={exp.logo || ''}
+            description={
+              <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 text-sm sm:text-base">
+                {exp.bullets.map((b, i) => (
+                  <li key={i}>
+                    {b.highlights ? b.highlights.reduce((acc, h) => acc.replace(h, `__HL__${h}__HL__`), b.text).split('__HL__').map((segment, idx) => (
+                      b.highlights!.includes(segment) ? <strong key={idx}>{segment}</strong> : <span key={idx}>{segment}</span>
+                    )) : b.text}
+                  </li>
+                ))}
+              </ul>
+            }
+          />
+        ))}
+      </div>
+    </motion.div>
+  )
+}
 
 export default Internships

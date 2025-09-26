@@ -286,67 +286,67 @@ function App() {
 
       <main className="w-full">
         <Suspense fallback={<LoadingSpinner />}>
-          <section id="home" className="min-h-[90vh] w-full pt-16 flex items-center justify-center px-2 sm:px-4 md:px-0">
-            <div className="max-w-6xl mx-auto w-full">
+          <section id="home" className="min-h-[90vh] w-full pt-16 flex items-center justify-center px-4 sm:px-6 md:px-12">
+            <div className="max-w-screen-2xl mx-auto w-full">
               <Home scrollToSection={scrollToSection} />
             </div>
           </section>
 
-          <section id="internships" className="min-h-[90vh] w-full pt-8 flex items-center justify-center px-2 sm:px-4 md:px-0">
+          <section id="internships" className="min-h-[90vh] w-full pt-8 flex items-center justify-center px-4 sm:px-6 md:px-12">
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto w-full"
+              className="max-w-screen-2xl mx-auto w-full"
             >
               <Internships />
             </motion.div>
           </section>
           
-          <section id="projects" className="min-h-[90vh] w-full pt-8 flex items-center justify-center px-2 sm:px-4 md:px-0">
+          <section id="projects" className="min-h-[90vh] w-full pt-8 flex items-center justify-center px-4 sm:px-6 md:px-12">
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto w-full"
+              className="max-w-screen-2xl mx-auto w-full"
             >
               <Projects />
             </motion.div>
           </section>
           
-          <section id="skills" className="min-h-[90vh] w-full pt-8 flex items-center justify-center px-2 sm:px-4 md:px-0">
+          <section id="skills" className="min-h-[90vh] w-full pt-8 flex items-center justify-center px-4 sm:px-6 md:px-12">
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto w-full"
+              className="max-w-screen-2xl mx-auto w-full"
             >
               <Skills />
             </motion.div>
           </section>
           
-          <section id="resume" className="min-h-[90vh] w-full pt-8 flex items-center justify-center px-2 sm:px-4 md:px-0">
+          <section id="resume" className="min-h-[90vh] w-full pt-8 flex items-center justify-center px-4 sm:px-6 md:px-12">
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto w-full"
+              className="max-w-screen-2xl mx-auto w-full"
             >
               <Resume />
             </motion.div>
           </section>
 
-          <section id="contact" className="min-h-[90vh] w-full pt-8 flex items-center justify-center px-2 sm:px-4 md:px-0">
+          <section id="contact" className="min-h-[90vh] w-full pt-8 flex items-center justify-center px-4 sm:px-6 md:px-12">
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto w-full"
+              className="max-w-screen-2xl mx-auto w-full"
             >
               <Contact />
             </motion.div>

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useMemo } from 'react'
+import { skillCategories } from '../data/profile'
 
 interface SkillCategoryProps {
   title: string;
@@ -33,21 +33,6 @@ const SkillCategory = ({ title, skills }: SkillCategoryProps) => (
 )
 
 const Skills = () => {
-  const skillCategories = useMemo(() => [
-    {
-      title: "Languages",
-      skills: ["Java", "Python", "C/C++", "SQL", "JavaScript", "TypeScript", "HTML/CSS", "Powershell"]
-    },
-    {
-      title: "Frameworks & Tools",
-      skills: ["React", "Node.js", "Django", "RESTful APIs", "Material-UI", "FastAPI", "Pandas", "Docker", "Git"]
-    },
-    {
-      title: "Platforms & Skills",
-      skills: ["Google Cloud", "Linux", "VMware", "AI/ML", "Embedded Systems", "Agile/Scrum"]
-    }
-  ], []);
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -58,9 +43,9 @@ const Skills = () => {
       <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-indigo-600 to-violet-600 text-transparent bg-clip-text">
         Skills & Expertise
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl w-full">
-        {skillCategories.map((category) => (
-          <SkillCategory key={category.title} {...category} />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-2xl w-full">
+        {skillCategories.slice(0,3).map(category => (
+          <SkillCategory key={category.title} title={category.title} skills={category.items} />
         ))}
       </div>
     </motion.div>

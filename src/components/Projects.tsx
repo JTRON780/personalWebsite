@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { projects } from '../data/profile'
 
 interface ProjectCardProps {
   title: string;
@@ -39,27 +40,6 @@ const ProjectCard = ({ title, description, tech, link }: ProjectCardProps) => (
 )
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "Dusty",
-      description: "Plant disease detection system using CNNs, achieving 82% accuracy with 20,000 images and an F-1 score of 81%",
-      tech: ["Python", "OpenCV", "Keras", "Scikit-learn"],
-      link: "https://github.com/username/dusty"
-    },
-    {
-      title: "IUCG Website",
-      description: "Full-stack website development using MERN stack, implementing RESTful APIs and improving performance by 30%",
-      tech: ["React", "Node.js", "MongoDB", "Express"],
-      link: "https://github.com/username/iucg-website"
-    },
-    {
-      title: "Secure Bootloader",
-      description: "Embedded systems security project for Stellaris microcontrollers using C, Assembly, and AES-GCM encryption",
-      tech: ["C", "Assembly", "UART", "AES-GCM"],
-      link: "https://github.com/username/secure-bootloader"
-    }
-  ];
-
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -72,7 +52,7 @@ const Projects = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
-          <ProjectCard key={index} {...project} />
+          <ProjectCard key={index} title={project.title} description={project.description} tech={project.tech} link={project.repo || project.link || '#'} />
         ))}
       </div>
     </motion.div>
