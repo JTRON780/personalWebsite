@@ -48,7 +48,7 @@ export const experience: ExperienceEntry[] = [
     logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjp7mSjC2egqIxP4XMrA-mKs6jlyi2fhgmbQ&s',
     bullets: [
       { text: 'Saved $210K annually and scaled trading capacity by 30% by piloting a model-driven trade-routing system for hedge fund clients (Fidelity Service Bureau).', highlights: ['$210K', '30%'] },
-      { text: 'Improved algorithm selection on 25M+ trades via contextual bandit ML models in Python & Kdb+/Q (Vowpal Wabbit) integrated into NEO & trader UI.', highlights: ['25M+'] },
+      { text: 'Improved algorithm selection via contextual bandit ML models in Python & Kdb+/Q (Vowpal Wabbit).', highlights: ['25M+'] },
       { text: 'Achieved +20% prediction accuracy through multi-epoch training & feature optimization on TCA datasets.', highlights: ['+20%'] },
       { text: 'Leveraged Linux, Docker/Kubernetes, and Jenkins CI/CD for reproducible model validation and deployment.' },
       { text: 'Deployed production ML models for OTC trade flow, increasing accessible liquidity.' }
