@@ -7,8 +7,6 @@ const Internships = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   // centers: pixel offsets of each card's vertical center relative to timeline top
   const [centers, setCenters] = useState<number[]>([])
-  // Track which cards are expanded (show all bullets)
-  const [expanded, setExpanded] = useState<Set<number>>(new Set())
   const cardRefs = useRef<HTMLDivElement[]>([])
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const timelineRef = useRef<HTMLDivElement | null>(null)
@@ -117,7 +115,7 @@ const Internships = () => {
 
   // Simple keyword-based technology inference from bullet text
   const techKeywords = [
-    'Python','SQL','Kdb+/Q','Docker','Kubernetes','Linux','Jenkins','C','Assembly','AES-GCM','UI Path','C#','Microsoft Graph','REST','APIs','JavaScript','Intune','SharePoint','React','MongoDB'
+    'Python','SQL','Kdb+/Q','Docker','Agile','Kubernetes','Linux','Jenkins','C','Assembly','AES-GCM','UI Path','C#','Microsoft Graph','REST','APIs','JavaScript','Intune','SharePoint','React','MongoDB', 'MERN', 'MLflow', 'Trading'
   ]
 
   const inferTech = (bullets: string[]): string[] => {
@@ -178,9 +176,6 @@ const Internships = () => {
             const bullets = exp.bullets.map(b => b.text)
             const techs = inferTech(bullets)
             const isCurrent = /present/i.test(exp.end)
-            const isExpanded = expanded.has(i)
-            const MIN_BULLETS = 2
-            const visibleBullets = isExpanded ? exp.bullets : exp.bullets.slice(0, MIN_BULLETS)
             return (
               <motion.div
                 key={exp.company + exp.start}
@@ -221,6 +216,9 @@ const Internships = () => {
                   <div className="experience-title flex flex-col justify-center min-w-0">
                     <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 tracking-tight">{exp.company}</h3>
                     <h4 className="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300 mb-1">{exp.role}</h4>
+                    {exp.description && (
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 italic mb-2">{exp.description}</p>
+                    )}
                     <div className="experience-subtitle flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                       <span className="dates font-medium">{exp.start} – {exp.end}</span>
                       <span className="location">{exp.location}</span>
@@ -236,38 +234,8 @@ const Internships = () => {
 
                 {/* Body */}
                 <div className="experience-body px-6 sm:px-10 mt-4">
-                  <ul className="experience-details space-y-2 text-sm sm:text-[15px] leading-relaxed text-gray-700 dark:text-gray-300">
-                    {visibleBullets.map((b, bi) => (
-                      <li key={bi} className="pl-1">
-                        {b.highlights ? b.highlights.reduce((acc, h) => acc.replace(h, `__HL__${h}__HL__`), b.text).split('__HL__').map((segment, si) => (
-                          b.highlights!.includes(segment) ? <strong key={si}>{segment}</strong> : <span key={si}>{segment}</span>
-                        )) : b.text}
-                      </li>
-                    ))}
-                  </ul>
-                  {exp.bullets.length > MIN_BULLETS && (
-                    <button
-                      type="button"
-                      aria-expanded={isExpanded}
-                      onClick={() => {
-                        setExpanded(prev => {
-                          const next = new Set(prev)
-                          if (next.has(i)) next.delete(i); else next.add(i)
-                          return next
-                        })
-                        // re-measure after layout change
-                        requestAnimationFrame(() => measureCenters())
-                      }}
-                      className="mt-3 text-xs font-medium tracking-wide inline-flex items-center gap-1 text-indigo-600 dark:text-indigo-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/70 rounded"
-                      style={{ color: colors.accent }}
-                    >
-                      {isExpanded ? 'Show fewer' : 'Show more'}
-                      <span aria-hidden="true" className="transition-transform duration-300" style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
-                    </button>
-                  )}
-
                   {techs.length > 0 && (
-                    <div className="technologies flex flex-wrap gap-2 mt-5">
+                    <div className="technologies flex flex-wrap gap-2">
                       {techs.map(t => (
                         <span
                           key={t}
