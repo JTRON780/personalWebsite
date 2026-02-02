@@ -14,8 +14,7 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      // Send form data to Formspree
-      const response = await fetch('https://formspree.io/f/xdoqzqzq', {
+      const response = await fetch('https://formspree.io/f/mbdkyvzg', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -47,55 +46,66 @@ const Contact = () => {
       transition={{ duration: 0.6 }}
       className="w-full px-2 xs:px-3 sm:px-4"
     >
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 md:mb-12 text-center bg-gradient-to-r from-indigo-600 to-violet-600 text-transparent bg-clip-text">
-        Get in Touch
-      </h2>
-      <div className="max-w-2xl mx-auto bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl shadow-xl p-3 xs:p-4 sm:p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-        <div className="mb-4 sm:mb-6 md:mb-8 text-center text-base sm:text-lg text-gray-700 dark:text-gray-300 space-y-1 sm:space-y-2">
+      <div className="relative mb-12 text-center">
+        <h2 className="text-3xl md:text-5xl font-bold font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-neon-cyan inline-block">
+          INITIATE CONTACT
+        </h2>
+        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-neon-purple to-neon-cyan"></div>
+      </div>
+
+      <div className="max-w-2xl mx-auto bg-dark-800/60 backdrop-blur-md rounded-xl shadow-lg p-3 xs:p-4 sm:p-6 md:p-8 border border-white/5 relative overflow-hidden">
+        {/* Decorative corner accents */}
+        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-neon-cyan rounded-tl-xl" />
+        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-neon-purple rounded-br-xl" />
+
+        <div className="mb-8 text-center text-base sm:text-lg text-gray-300 space-y-2 font-space">
           <div>
-            <span className="font-semibold">Email:</span> <a href="mailto:johan.lakshmanan@gmail.com" className="text-indigo-600 dark:text-indigo-400 hover:underline break-all">johan.lakshmanan@gmail.com</a>
+            <span className="font-semibold text-neon-cyan">EML:</span> <a href="mailto:johan.lakshmanan@gmail.com" className="text-white hover:text-neon-cyan transition-colors break-all">johan.lakshmanan@gmail.com</a>
           </div>
           <div>
-            <span className="font-semibold">Phone:</span> <a href="tel:3392061334" className="text-indigo-600 dark:text-indigo-400 hover:underline">339-206-1334</a>
+            <span className="font-semibold text-neon-purple">PHN:</span> <a href="tel:3392061334" className="text-white hover:text-neon-purple transition-colors">339-206-1334</a>
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-1 sm:mb-2 text-gray-700 dark:text-gray-300">
-              Name
+            <label htmlFor="name" className="block text-sm font-medium mb-2 text-neon-cyan font-orbitron uppercase tracking-wider">
+              Identity
             </label>
             <input
               type="text"
               id="name"
               value={formData.name}
               onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-              className="w-full px-2 sm:px-3 py-2 sm:py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm sm:text-base"
+              className="w-full px-4 py-3 rounded-lg bg-dark-900/50 border border-dark-700 text-white focus:outline-none focus:border-neon-cyan focus:shadow-neon-cyan transition-all text-sm sm:text-base font-space"
+              placeholder="Enter your name"
               required
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-1 sm:mb-2 text-gray-700 dark:text-gray-300">
-              Email
+            <label htmlFor="email" className="block text-sm font-medium mb-2 text-neon-purple font-orbitron uppercase tracking-wider">
+              Coordinates
             </label>
             <input
               type="email"
               id="email"
               value={formData.email}
               onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-              className="w-full px-2 sm:px-3 py-2 sm:py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm sm:text-base"
+              className="w-full px-4 py-3 rounded-lg bg-dark-900/50 border border-dark-700 text-white focus:outline-none focus:border-neon-purple focus:shadow-neon-purple transition-all text-sm sm:text-base font-space"
+              placeholder="Enter your email"
               required
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-1 sm:mb-2 text-gray-700 dark:text-gray-300">
-              Message
+            <label htmlFor="message" className="block text-sm font-medium mb-2 text-white font-orbitron uppercase tracking-wider">
+              Transmission
             </label>
             <textarea
               id="message"
               rows={4}
               value={formData.message}
               onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-              className="w-full px-2 sm:px-3 py-2 sm:py-3 rounded-lg bg-white/50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm sm:text-base"
+              className="w-full px-4 py-3 rounded-lg bg-dark-900/50 border border-dark-700 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all text-sm sm:text-base font-space"
+              placeholder="Type your message..."
               required
             ></textarea>
           </div>
@@ -104,30 +114,30 @@ const Contact = () => {
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isSubmitting}
-            className={`w-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg transition-all ${
-              isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:opacity-90'
-            } animate-glow text-sm sm:text-base`}
+            className={`w-full bg-gradient-to-r from-neon-cyan to-neon-purple text-dark-900 font-bold font-orbitron uppercase tracking-widest px-8 py-4 rounded-none h-[64px] transition-all relative overflow-hidden group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:opacity-90'
+              }`}
           >
-            {isSubmitting ? 'Sending...' : 'Send Message'}
+            <span className="relative z-10">{isSubmitting ? 'TRANSMITTING...' : 'SEND MESSAGE'}</span>
+            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </motion.button>
-          
+
           {submitStatus === 'success' && (
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-green-600 dark:text-green-400 text-center mt-4"
+              className="text-neon-cyan text-center mt-4 font-space"
             >
-              Thank you for your message! I'll get back to you soon.
+              Transmission received. Stand by for response.
             </motion.p>
           )}
-          
+
           {submitStatus === 'error' && (
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-red-600 dark:text-red-400 text-center mt-4"
+              className="text-red-500 text-center mt-4 font-space"
             >
-              Something went wrong. Please try again later.
+              Transmission failed. Retry sequence initiated.
             </motion.p>
           )}
         </form>

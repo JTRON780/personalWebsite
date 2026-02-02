@@ -101,11 +101,12 @@ export const experience: ExperienceEntry[] = [
 // PROJECTS
 export const projects: ProjectEntry[] = [
   {
-    title: 'Dusty',
-    description: 'Plant disease detection using CNNs on 20K images achieving 82% accuracy (F1: 81%).',
-    tech: ['Python', 'OpenCV', 'Keras', 'Scikit-learn'],
-    repo: 'https://github.com/NxtGenLegend/DGMD-S-17',
-    highlightMetric: '82% accuracy'
+    title: 'BTC Market Outlook',
+    description: 'Serverless Bitcoin sentiment dashboard tracking market sentiment via NLP (FinBERT) on news & Reddit. Automated on GitHub infrastructure.',
+    tech: ['Next.js', 'FastAPI', 'FinBERT', 'Python', 'Tailwind'],
+    link: 'https://btc-delta-one.vercel.app',
+    repo: 'https://github.com/jtron780/BTC',
+    highlightMetric: 'Live NLP Sentiment'
   },
   {
     title: 'IUCG Website',

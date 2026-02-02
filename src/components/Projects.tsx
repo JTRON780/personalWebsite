@@ -9,47 +9,55 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ title, description, tech, link }: ProjectCardProps) => (
-  <motion.div 
-    whileHover={{ y: -5, transition: { duration: 0.2 } }}
-    className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl shadow-xl p-6 border border-gray-200 dark:border-gray-700"
+  <motion.div
+    whileHover={{ y: -10, scale: 1.02 }}
+    className="group relative bg-dark-800/40 backdrop-blur-md rounded-xl p-6 border border-white/5 hover:border-neon-cyan/50 transition-colors duration-300"
   >
-    <h3 className="text-xl font-semibold mb-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-transparent bg-clip-text">{title}</h3>
-    <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
-    <div className="flex flex-wrap gap-2 mb-4">
-      {tech.map((item, index) => (
-        <span 
-          key={index}
-          className="bg-indigo-100 dark:bg-indigo-900/40 text-indigo-800 dark:text-indigo-200 text-sm px-3 py-1 rounded-full"
-        >
-          {item}
-        </span>
-      ))}
+    <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 to-transparent opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300" />
+
+    <div className="relative z-10">
+      <h3 className="text-xl font-bold mb-3 text-white font-orbitron group-hover:text-neon-cyan transition-colors">{title}</h3>
+      <p className="text-gray-400 mb-4 font-space text-sm leading-relaxed">{description}</p>
+      <div className="flex flex-wrap gap-2 mb-6">
+        {tech.map((item, index) => (
+          <span
+            key={index}
+            className="bg-neon-blue/10 text-neon-blue/90 border border-neon-blue/20 text-xs px-3 py-1 rounded-sm font-space"
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center text-neon-purple hover:text-neon-cyan transition-colors font-medium text-sm uppercase tracking-wider group/link"
+      >
+        View Project
+        <svg className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
     </div>
-    <a 
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300"
-    >
-      View Project 
-      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-      </svg>
-    </a>
   </motion.div>
 )
 
 const Projects = () => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
       className="w-full px-4"
     >
-      <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-indigo-600 to-violet-600 text-transparent bg-clip-text">
-        Featured Projects
-      </h2>
+      <div className="relative mb-16 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-purple inline-block">
+          FEATURED PROJECTS
+        </h2>
+        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-purple"></div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
           <ProjectCard key={index} title={project.title} description={project.description} tech={project.tech} link={project.repo || project.link || '#'} />
