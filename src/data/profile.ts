@@ -41,59 +41,67 @@ export interface AwardEntry {
 // EXPERIENCE
 export const experience: ExperienceEntry[] = [
   {
+    company: 'Roblox',
+    role: 'Incoming Software Engineering Intern',
+    description: 'Infra > Compute > Cell Lifecycle',
+    location: 'San Mateo, CA',
+    start: 'Jan 2026',
+    end: 'Present',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Roblox_player_icon_black.svg/1200px-Roblox_player_icon_black.svg.png',
+    bullets: [
+      { text: 'Selected for the Cell Lifecycle team to build scalable backend services and infrastructure tools that manage the end-to-end lifecycle of Roblox’s global compute clusters.' },
+      { text: 'Collaborating on mission-critical systems to ensure seamless performance and low-latency connectivity for a global user base of 70M+.' }
+    ]
+  },
+  {
     company: 'Fidelity Investments',
-    role: 'Equity – Quantitative Intern',
+    role: 'Quantitative Research Intern',
     description: 'Equity Trading | Systematic Trading and Analytics Platform',
     location: 'Boston, MA',
-    start: 'Jun 2025',
-    end: 'Aug 2025',
-    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjp7mSjC2egqIxP4XMrA-mKs6jlyi2fhgmbQ&s',
+    start: 'Jun. 2025',
+    end: 'Aug. 2025',
     bullets: [
-      { text: 'Built and deployed a low-latency trade-routing platform in Kubernetes with Kdb+/Q and Python, scaling Trading capacity 30% and saving $5M+ across clients.', highlights: ['30%', '$5M+'] },
-      { text: 'Developed MLflow-based training pipelines and feature stores to automate model retraining, reducing retrain cycle time by 40%.', highlights: ['40%'] },
-      { text: 'Integrated models and APIs into Fidelity\'s NEO framework and trader UI, collaborating with quant and systems teams to ensure fault-tolerant, production-ready deployment.' }
+      { text: 'Piloted a model-driven trade router, scaling trade volume by 1.4x and saving $200K+ over 300+ hedge funds.' },
+      { text: 'Developed and integrated backend machine learning models in Python and Kdb+/Q to optimize routing for 25M+ trades, improving selection accuracy by 20% and reducing decision latency below 10 ms.' },
+      { text: 'Constructed automated training, deployment, and data pipelines on AWS EKS using Jenkins CI/CD with containerized microservices and MLflow, supporting reproducible model versioning and rollback in production.' }
     ]
   },
   {
     company: 'Waters Corporation',
-    role: 'Software Engineering (RPA) Intern',
+    role: 'Software Engineering Intern',
     description: 'IT Development & SAP Systems',
     location: 'Milford, MA',
     start: 'May 2024',
-    end: 'Aug 2024',
-    logo: 'https://ispe.org/sites/default/files/2021-03/Waters%20%20logo.jpg',
+    end: 'Aug. 2024',
     bullets: [
-      { text: 'Built automated renewal quote system with Python & SQL saving 100+ hours / month.' },
-      { text: 'Integrated AI automation workflows in UI Path using C# for invoice processing (SAP S/4HANA).' },
-      { text: 'Developed Intune ↔ SharePoint integration via Microsoft Graph & REST APIs.' }
+      { text: 'Engineered a full-stack automated renewal quote system using Python, RESTful APIs, and a responsive UI, reducing manual workload by 100+ hours monthly, streamlining sales operations.' },
+      { text: 'Designed multiple REST APIs to retrieve customer SharePoint resources by environment ID, decreasing mitigation times from hours to minutes for runtime incidents, reducing loads for on-call engineering teams.' },
+      { text: 'Developed high-concurrency C# modules to interface with SAP S/4HANA, optimizing SQL query execution and reducing transaction latency by 25%.' }
     ]
   },
   {
     company: 'Build UMass',
-    role: 'Software Developer',
+    role: 'Software Engineer',
     description: 'Full-Stack Development',
     location: 'Amherst, MA',
-    start: 'Feb 2024',
-    end: 'Present',
+    start: 'Feb. 2024',
+    end: 'May. 2024',
     logo: 'https://npr.brightspotcdn.com/ef/7b/c4150f41446c884292aab3e3b182/medium-pms-202.png',
     bullets: [
-      { text: 'Leading MERN (MongoDB Express React Node) development for IUCG platform with scalable APIs layer.' },
-      { text: 'Improved site performance by 30% via query optimization & caching.' },
-      { text: 'Collaborate cross-functionally using Agile ceremonies & code reviews Docker.' }
+      { text: 'Led full-stack development of a consulting platform using MERN stack, deployed on Dockerized AWS EC2 with Nginx load balancing and GitHub Actions CI/CD.' },
+      { text: 'Rebuilt RESTful APIs with pagination, Redis caching, and profiling, reducing latency by 40% and supporting 5x higher concurrent request volumes.' },
+      { text: 'Partnered with designers to improve UI responsiveness and reduce load times by 20% for 200+ concurrent users.' }
     ]
   },
   {
     company: 'MIT Lincoln Laboratory',
-    role: 'Embedded Systems Researcher',
+    role: 'Embedded Systems Intern',
     description: 'Cyber Security and Embedded Systems',
     location: 'Cambridge, MA',
     start: 'May 2021',
-    end: 'Aug 2022',
-    logo: 'https://pbs.twimg.com/profile_images/1380233126354558979/ltnN7Gl4_400x400.jpg',
+    end: 'Aug. 2022',
     bullets: [
-      { text: '1st place – BWSI Penetration Testing competition.' },
-      { text: 'Engineered secure bootloader for Stellaris microcontrollers (C, Assembly, AES-GCM).' },
-      { text: 'Developed penetration testing framework in Linux; mitigated 16 critical vulns.' }
+      { text: 'Built a secure bootloader for Stellaris microcontrollers (C/Assembly) and designed penetration testing frameworks (Python/SQL), patching 16+ vulnerabilities and earning 1st place in the MITLL Cybersecurity Challenge.' }
     ]
   }
 ];

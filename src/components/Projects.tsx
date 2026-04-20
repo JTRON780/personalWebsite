@@ -5,19 +5,20 @@ interface ProjectCardProps {
   title: string;
   description: string;
   tech: string[];
-  link: string;
+  link?: string;
+  repo?: string;
 }
 
-const ProjectCard = ({ title, description, tech, link }: ProjectCardProps) => (
+const ProjectCard = ({ title, description, tech, link, repo }: ProjectCardProps) => (
   <motion.div
     whileHover={{ y: -10, scale: 1.02 }}
-    className="group relative bg-dark-800/40 backdrop-blur-md rounded-xl p-6 border border-white/5 hover:border-neon-cyan/50 transition-colors duration-300"
+    className="group relative bg-dark-800/40 backdrop-blur-md rounded-xl p-6 border border-white/5 hover:border-neon-cyan/50 transition-colors duration-300 flex flex-col"
   >
-    <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 to-transparent opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300" />
+    <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 to-transparent opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300 pointer-events-none" />
 
-    <div className="relative z-10">
+    <div className="relative z-10 flex flex-col h-full">
       <h3 className="text-xl font-bold mb-3 text-white font-orbitron group-hover:text-neon-cyan transition-colors">{title}</h3>
-      <p className="text-gray-400 mb-4 font-space text-sm leading-relaxed">{description}</p>
+      <p className="text-gray-400 mb-4 font-space text-sm leading-relaxed flex-grow">{description}</p>
       <div className="flex flex-wrap gap-2 mb-6">
         {tech.map((item, index) => (
           <span
@@ -28,17 +29,34 @@ const ProjectCard = ({ title, description, tech, link }: ProjectCardProps) => (
           </span>
         ))}
       </div>
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center text-neon-purple hover:text-neon-cyan transition-colors font-medium text-sm uppercase tracking-wider group/link"
-      >
-        View Project
-        <svg className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </a>
+      <div className="flex flex-wrap items-center gap-6 mt-auto">
+        {link && (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-neon-purple hover:text-neon-cyan transition-colors font-medium text-[13px] uppercase tracking-wider group/link"
+          >
+            View Project
+            <svg className="w-4 h-4 ml-1.5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        )}
+        {repo && (
+          <a
+            href={repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-gray-400 hover:text-white transition-colors font-medium text-[13px] uppercase tracking-wider group/repo"
+          >
+            View Codebase
+            <svg className="w-4 h-4 ml-1.5 transform group-hover/repo:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </a>
+        )}
+      </div>
     </div>
   </motion.div>
 )
@@ -60,7 +78,7 @@ const Projects = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
-          <ProjectCard key={index} title={project.title} description={project.description} tech={project.tech} link={project.repo || project.link || '#'} />
+          <ProjectCard key={index} title={project.title} description={project.description} tech={project.tech} link={project.link} repo={project.repo} />
         ))}
       </div>
     </motion.div>
