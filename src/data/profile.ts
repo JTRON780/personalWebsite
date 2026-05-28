@@ -42,15 +42,15 @@ export interface AwardEntry {
 export const experience: ExperienceEntry[] = [
   {
     company: 'Roblox',
-    role: 'Incoming Software Engineering Intern',
+    role: 'Software Engineering Intern',
     description: 'Infra > Compute > Cell Lifecycle',
     location: 'San Mateo, CA',
     start: 'Jan 2026',
     end: 'Present',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Roblox_player_icon_black.svg/1200px-Roblox_player_icon_black.svg.png',
     bullets: [
-      { text: 'Selected for the Cell Lifecycle team to build scalable backend services and infrastructure tools that manage the end-to-end lifecycle of Roblox’s global compute clusters.' },
-      { text: 'Collaborating on mission-critical systems to ensure seamless performance and low-latency connectivity for a global user base of 70M+.' }
+      { text: 'Building GPU integration services within the Cell Lifecycle team, enabling automated provisioning and lifecycle management of GPU-accelerated workloads across Roblox\'s Kubernetes clusters.' },
+      { text: 'Developing scalable backend infrastructure to orchestrate GPU resource allocation, health monitoring, and seamless cell transitions, supporting low-latency compute for a global user base of 70M+.' }
     ]
   },
   {
