@@ -55,7 +55,7 @@ const Resume = () => (
         <h2 className="text-2xl font-bold mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">Education</h2>
         <ResumeItem
           title={education.institution}
-          subtitle={`${education.degree}`}
+          subtitle={`${education.degree} — GPA: ${education.gpa}, ${education.honors}`}
           date={`${education.start} -- ${education.end}`}
           location={education.location}
         >

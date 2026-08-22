@@ -45,12 +45,14 @@ export const experience: ExperienceEntry[] = [
     role: 'Software Engineering Intern',
     description: 'Infra > Compute > Cell Lifecycle',
     location: 'San Mateo, CA',
-    start: 'Jan 2026',
+    start: 'May 2026',
     end: 'Present',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Roblox_player_icon_black.svg/1200px-Roblox_player_icon_black.svg.png',
+    logo: 'https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/0/e/e/0eeeb19633422b1241f4306419a0f15f39d58de9.png',
     bullets: [
-      { text: 'Building GPU integration services within the Cell Lifecycle team, enabling automated provisioning and lifecycle management of GPU-accelerated workloads across Roblox\'s Kubernetes clusters.' },
-      { text: 'Developing scalable backend infrastructure to orchestrate GPU resource allocation, health monitoring, and seamless cell transitions, supporting low-latency compute for a global user base of 70M+.' }
+      { text: 'Architected a bare-metal GPU provisioning platform supporting 15+ clusters powering GenAI workloads for Roblox\'s 70M+ daily users.' },
+      { text: 'Eliminated 5+ min node boot penalties by pre-baking CUDA drivers with open kernel modules, preventing DKMS build collisions and version mismatches during weekly fleet patching.' },
+      { text: 'Automated GitHub Actions CI/CD on self-hosted runners, writing bash scripts to map PCI addresses, load vfio-pci modules, and validate GPU readiness for GenAI workloads.' },
+      { text: 'Built an AWS Kubernetes validation stack, resolving Nix environment constraints and operator nil-pointer bugs to successfully deploy the GPU Operator cascade for vLLM inference.' }
     ]
   },
   {
@@ -104,6 +106,7 @@ export const experience: ExperienceEntry[] = [
       { text: 'Built a secure bootloader for Stellaris microcontrollers (C/Assembly) and designed penetration testing frameworks (Python/SQL), patching 16+ vulnerabilities and earning 1st place in the MITLL Cybersecurity Challenge.' }
     ]
   }
+
 ];
 
 // PROJECTS
@@ -135,24 +138,30 @@ export const projects: ProjectEntry[] = [
 export const skillCategories: SkillCategory[] = [
   {
     title: 'Languages',
-    items: ['Java', 'Python', 'C/C++', 'SQL', 'JavaScript', 'TypeScript', 'HTML/CSS', 'Powershell']
+    items: ['Python', 'Java', 'C/C++', 'TypeScript', 'JavaScript', 'SQL', 'HTML/CSS']
   },
   {
     title: 'Frameworks & Libraries',
-    items: ['React', 'Node.js', 'Django', 'FastAPI', 'Pandas', 'JUnit', 'REST APIs']
+    items: ['React', 'Node.js', 'Express', 'Django', 'FastAPI', 'Pandas', 'Redis', 'Material-UI', 'REST APIs']
   },
   {
     title: 'Tools & Platforms',
-    items: ['Docker', 'Git', 'Google Cloud', 'Linux', 'VMware', 'VS Code']
+    items: ['AWS (EC2, EKS)', 'Docker', 'Kubernetes', 'Terraform', 'Jenkins', 'GitHub Actions', 'Nginx', 'Git', 'Google Cloud', 'Linux', 'VMware', 'VS Code']
   },
   {
     title: 'Core Skills',
-    items: ['AI/ML', 'Software Design', 'Embedded Systems', 'Cloud Computing', 'Agile/Scrum']
+    items: ['Distributed Systems', 'Networking', 'Microservices', 'JIRA', 'AI/ML', 'Software Design', 'Embedded Systems', 'Cloud Computing', 'Agile/Scrum']
   }
 ];
 
 // AWARDS
 export const awards: AwardEntry[] = [
+  {
+    title: 'Hack UMass — Best ML Hack',
+    description: 'Winner of Best Machine Learning Hack at Hack UMass hackathon.',
+    date: 'Nov 2025',
+    highlight: true
+  },
   {
     title: 'CPTC 3rd Place Global',
     description: 'Collegiate Penetration Testing Competition Finals placement (Top 3 globally).',
@@ -174,9 +183,11 @@ export const awards: AwardEntry[] = [
 // EDUCATION (optional future extraction)
 export const education = {
   institution: 'University of Massachusetts, Amherst',
-  degree: 'B.S. Computer Science (GPA 3.75)',
+  degree: 'B.S. Computer Science',
+  gpa: '3.7/4.0',
+  honors: 'Dean\'s List',
   start: 'Aug 2023',
   end: 'May 2026',
   location: 'Amherst, MA',
-  coursework: ['Data Structures', 'Algorithms', 'Artificial Intelligence', 'C Programming', 'Java', 'Calculus III']
+  coursework: ['Operating Systems', 'Distributed Systems', 'Computer Networks', 'Algorithms', 'Machine Learning']
 };
