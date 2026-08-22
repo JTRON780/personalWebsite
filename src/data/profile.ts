@@ -138,19 +138,19 @@ export const projects: ProjectEntry[] = [
 export const skillCategories: SkillCategory[] = [
   {
     title: 'Languages',
-    items: ['Python', 'Java', 'C/C++', 'TypeScript', 'JavaScript', 'SQL', 'HTML/CSS']
+    items: ['Python', 'Java', 'C/C++', 'TypeScript', 'JavaScript', 'SQL', 'Kdb+/Q', 'Bash', 'HTML/CSS']
   },
   {
     title: 'Frameworks & Libraries',
-    items: ['React', 'Node.js', 'Express', 'Django', 'FastAPI', 'Pandas', 'Redis', 'Material-UI', 'REST APIs']
+    items: ['React', 'Node.js', 'Express', 'Django', 'FastAPI', 'LangChain', 'FAISS', 'vLLM', 'MLflow', 'Pandas', 'Redis', 'Material-UI', 'REST APIs']
   },
   {
     title: 'Tools & Platforms',
-    items: ['AWS (EC2, EKS)', 'Docker', 'Kubernetes', 'Terraform', 'Jenkins', 'GitHub Actions', 'Nginx', 'Git', 'Google Cloud', 'Linux', 'VMware', 'VS Code']
+    items: ['AWS (EC2, EKS)', 'Docker', 'Kubernetes', 'Terraform', 'Jenkins', 'GitHub Actions', 'Nginx', 'Git', 'Google Cloud', 'Linux', 'Nix', 'CUDA', 'VMware', 'SAP S/4HANA', 'VS Code']
   },
   {
     title: 'Core Skills',
-    items: ['Distributed Systems', 'Networking', 'Microservices', 'JIRA', 'AI/ML', 'Software Design', 'Embedded Systems', 'Cloud Computing', 'Agile/Scrum']
+    items: ['Distributed Systems', 'GenAI Infrastructure', 'GPU Provisioning', 'LLM Serving', 'Networking', 'Microservices', 'JIRA', 'AI/ML', 'Software Design', 'Embedded Systems', 'Cloud Computing', 'Agile/Scrum']
   }
 ];
 
@@ -187,7 +187,7 @@ export const education = {
   gpa: '3.7/4.0',
   honors: 'Dean\'s List',
   start: 'Aug 2023',
-  end: 'May 2026',
+  end: 'May 2026 (Graduated)',
   location: 'Amherst, MA',
   coursework: ['Operating Systems', 'Distributed Systems', 'Computer Networks', 'Algorithms', 'Machine Learning']
 };
