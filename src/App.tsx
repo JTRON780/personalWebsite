@@ -188,6 +188,8 @@ const CustomCursor = () => {
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const sectionIds = ['home', 'internships', 'projects', 'skills', 'resume', 'contact'];
 
   const scrollToSection = (id: string) => {
@@ -197,8 +199,22 @@ function App() {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   useEffect(() => {
     const handleScroll = () => {
+      // Calculate scroll progress
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(progress);
+
+      // Show/hide back to top button
+      setShowBackToTop(scrollTop > 500);
+
+      // Update active section
       const scrollPosition = window.scrollY + window.innerHeight / 3;
       let currentSection = sectionIds[0];
       for (const id of sectionIds) {
@@ -222,6 +238,29 @@ function App() {
     <div className="min-h-screen w-full bg-dark-900 bg-cyber-grid text-white relative">
       {/* Background Overlay for depth */}
       <div className="fixed inset-0 bg-gradient-to-b from-transparent via-dark-900/50 to-dark-900 pointer-events-none z-0" />
+
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-white/5 z-50">
+        <motion.div
+          className="h-full bg-gradient-to-r from-neon-cyan to-neon-purple"
+          style={{ width: `${scrollProgress}%` }}
+          transition={{ duration: 0.1 }}
+        />
+      </div>
+
+      {/* Back to Top Button */}
+      <motion.button
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: showBackToTop ? 1 : 0, scale: showBackToTop ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        onClick={scrollToTop}
+        className="fixed bottom-8 right-8 z-40 p-3 bg-neon-cyan/10 border border-neon-cyan/30 rounded-full hover:bg-neon-cyan/20 transition-colors group"
+        aria-label="Back to top"
+      >
+        <svg className="w-6 h-6 text-neon-cyan group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </motion.button>
 
       <CustomCursor />
 

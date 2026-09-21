@@ -20,9 +20,10 @@ const SkillCategory = ({ title, skills }: SkillCategoryProps) => (
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: index * 0.1 }}
           key={skill}
-          className="flex items-center group"
+          whileHover={{ x: 5, scale: 1.05 }}
+          className="flex items-center group cursor-default"
         >
-          <span className="text-neon-purple mr-3 transform group-hover:scale-125 transition-transform duration-300">▹</span>
+          <span className="text-neon-purple mr-3 transform group-hover:scale-150 group-hover:text-neon-cyan transition-all duration-300">▹</span>
           <span className="text-gray-300 group-hover:text-white transition-colors font-space">{skill}</span>
         </motion.li>
       ))}

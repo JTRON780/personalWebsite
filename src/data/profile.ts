@@ -124,6 +124,12 @@ export const experience: ExperienceEntry[] = [
 // PROJECTS
 export const projects: ProjectEntry[] = [
   {
+    title: 'DRP Auto-Onboarding',
+    description: 'Automated onboarding system for DevSecOps Release Pipeline, streamlining microservice deployment across Kubernetes clusters with ArgoCD integration.',
+    tech: ['Kubernetes', 'ArgoCD', 'Go', 'Python', 'Docker'],
+    highlightMetric: 'Automated Deployment'
+  },
+  {
     title: 'BTC Market Outlook',
     description: 'Serverless Bitcoin sentiment dashboard tracking market sentiment via NLP (FinBERT) on news & Reddit. Automated on GitHub infrastructure.',
     tech: ['Next.js', 'FastAPI', 'FinBERT', 'Python', 'Tailwind'],
@@ -171,7 +177,7 @@ export const awards: AwardEntry[] = [
   {
     title: 'Hack UMass — Best ML Hack',
     description: 'Winner of Best Machine Learning Hack at Hack UMass hackathon.',
-    date: 'Nov 2025',
+    date: 'Nov 2024',
     highlight: true
   },
   {
