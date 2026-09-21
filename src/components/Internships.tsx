@@ -17,6 +17,7 @@ const getCompanyIcon = (company: string) => {
   if (company.includes('Build UMass')) return BuildingLibraryIcon;
   if (company.includes('Lincoln')) return ShieldCheckIcon;
   if (company.includes('Roblox')) return CubeIcon;
+  if (company.includes('Dell')) return BriefcaseIcon;
   return BriefcaseIcon;
 }
 
