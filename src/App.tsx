@@ -18,9 +18,18 @@ const LoadingSpinner = () => (
 
 const CustomCursor = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [cursorVisible, setCursorVisible] = useState(false);
 
   useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    // More robust touch detection for Windows compatibility
+    const checkTouchDevice = () => {
+      const hasTouch = 'ontouchstart' in window ||
+                      navigator.maxTouchPoints > 0 ||
+                      (navigator as any).msMaxTouchPoints > 0;
+      setIsTouchDevice(hasTouch);
+    };
+
+    checkTouchDevice();
 
     if (!isTouchDevice) {
       // Create the ring cursor
@@ -75,6 +84,15 @@ const CustomCursor = () => {
         // Update dot position immediately via left/top to preserve CSS transform (-50%)
         dot.style.left = `${targetX}px`;
         dot.style.top = `${targetY}px`;
+
+        // Show cursor on first movement
+        if (!cursorVisible) {
+          setCursorVisible(true);
+          cursor.style.display = 'block';
+          dot.style.display = 'block';
+          document.documentElement.style.cursor = 'none';
+          document.body.style.cursor = 'none';
+        }
       };
 
       const handleMouseOver = () => {
@@ -97,11 +115,10 @@ const CustomCursor = () => {
 
       const render = () => {
         // Smoothly interpolate the ring position to the target (dot) position
-        cursorX = lerp(cursorX, targetX, 0.15); // Removed the -14 offset as we want center alignment
+        cursorX = lerp(cursorX, targetX, 0.15);
         cursorY = lerp(cursorY, targetY, 0.15);
         cursor.style.left = `${cursorX}px`;
         cursor.style.top = `${cursorY}px`;
-        // We use left/top for position and transform for scale now
 
         requestAnimationId = requestAnimationFrame(render);
       };
@@ -135,53 +152,44 @@ const CustomCursor = () => {
 
       document.addEventListener('mousemove', moveCursor);
 
-      // Show/hide cursor on mouse enter/leave
-      const showCursor = (e?: MouseEvent) => {
+      // Show/hide cursor on window enter/leave (more reliable than document events)
+      const showCursor = () => {
         cursor.style.display = 'block';
         dot.style.display = 'block';
-        if (e) {
-          targetX = e.clientX;
-          targetY = e.clientY;
-          dot.style.left = `${targetX}px`;
-          dot.style.top = `${targetY}px`;
-          cursorX = targetX;
-          cursorY = targetY;
-        }
         document.documentElement.style.cursor = 'none';
         document.body.style.cursor = 'none';
       };
+
       const hideCursor = () => {
         cursor.style.display = 'none';
         dot.style.display = 'none';
+        document.documentElement.style.cursor = 'auto';
+        document.body.style.cursor = 'auto';
       };
-      document.addEventListener('mouseenter', showCursor);
-      document.addEventListener('mouseleave', hideCursor);
 
-      const showOnFirstMove = (e: MouseEvent) => {
-        targetX = e.clientX;
-        targetY = e.clientY;
-        showCursor(e);
-        document.removeEventListener('mousemove', showOnFirstMove);
-      };
-      document.addEventListener('mousemove', showOnFirstMove);
+      window.addEventListener('mouseenter', showCursor);
+      window.addEventListener('mouseleave', hideCursor);
 
-      // Hide cursor initially
-      cursor.style.display = 'none';
-      dot.style.display = 'none';
+      // Fallback: show cursor on any mouse movement after a short delay
+      const fallbackShow = setTimeout(() => {
+        if (!cursorVisible) {
+          showCursor();
+        }
+      }, 1000);
 
       return () => {
+        clearTimeout(fallbackShow);
         cancelAnimationFrame(requestAnimationId);
         document.removeEventListener('mousemove', moveCursor);
-        document.removeEventListener('mouseenter', showCursor);
-        document.removeEventListener('mouseleave', hideCursor);
+        window.removeEventListener('mouseenter', showCursor);
+        window.removeEventListener('mouseleave', hideCursor);
         document.removeEventListener('mouseover', delegatedMouseOver);
         document.removeEventListener('mouseout', delegatedMouseOut);
         document.body.removeChild(cursor);
         document.body.removeChild(dot);
-        document.removeEventListener('mousemove', showOnFirstMove);
       };
     }
-  }, [isTouchDevice]);
+  }, [isTouchDevice, cursorVisible]);
 
   return null;
 };
