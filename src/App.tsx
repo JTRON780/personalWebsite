@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useEffect, useState, Suspense, lazy } from 'react'
+import { useEffect, useState, useRef, Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
 
 // Lazy load components
@@ -18,20 +18,21 @@ const LoadingSpinner = () => (
 
 const CustomCursor = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [cursorVisible, setCursorVisible] = useState(false);
+  const cursorVisibleRef = useRef(false);
 
   useEffect(() => {
-    // More robust touch detection for Windows compatibility
+    // Modern touch detection (removed deprecated msMaxTouchPoints)
     const checkTouchDevice = () => {
-      const hasTouch = 'ontouchstart' in window ||
-                      navigator.maxTouchPoints > 0 ||
-                      (navigator as any).msMaxTouchPoints > 0;
+      const hasTouch = navigator.maxTouchPoints > 0;
       setIsTouchDevice(hasTouch);
     };
 
     checkTouchDevice();
 
-    if (!isTouchDevice) {
+    // Use synchronous check to avoid timing issues
+    const hasTouch = navigator.maxTouchPoints > 0;
+
+    if (!hasTouch) {
       // Create the ring cursor
       const cursor = document.createElement('div');
       cursor.className = 'custom-cursor-ring';
@@ -86,12 +87,10 @@ const CustomCursor = () => {
         dot.style.top = `${targetY}px`;
 
         // Show cursor on first movement
-        if (!cursorVisible) {
-          setCursorVisible(true);
+        if (!cursorVisibleRef.current) {
+          cursorVisibleRef.current = true;
           cursor.style.display = 'block';
           dot.style.display = 'block';
-          document.documentElement.style.cursor = 'none';
-          document.body.style.cursor = 'none';
         }
       };
 
@@ -156,15 +155,11 @@ const CustomCursor = () => {
       const showCursor = () => {
         cursor.style.display = 'block';
         dot.style.display = 'block';
-        document.documentElement.style.cursor = 'none';
-        document.body.style.cursor = 'none';
       };
 
       const hideCursor = () => {
         cursor.style.display = 'none';
         dot.style.display = 'none';
-        document.documentElement.style.cursor = 'auto';
-        document.body.style.cursor = 'auto';
       };
 
       window.addEventListener('mouseenter', showCursor);
@@ -172,8 +167,9 @@ const CustomCursor = () => {
 
       // Fallback: show cursor on any mouse movement after a short delay
       const fallbackShow = setTimeout(() => {
-        if (!cursorVisible) {
+        if (!cursorVisibleRef.current) {
           showCursor();
+          cursorVisibleRef.current = true;
         }
       }, 1000);
 
@@ -185,11 +181,16 @@ const CustomCursor = () => {
         window.removeEventListener('mouseleave', hideCursor);
         document.removeEventListener('mouseover', delegatedMouseOver);
         document.removeEventListener('mouseout', delegatedMouseOut);
-        document.body.removeChild(cursor);
-        document.body.removeChild(dot);
+        // Safely remove cursor elements if they exist
+        if (cursor && cursor.parentNode) {
+          document.body.removeChild(cursor);
+        }
+        if (dot && dot.parentNode) {
+          document.body.removeChild(dot);
+        }
       };
     }
-  }, [isTouchDevice, cursorVisible]);
+  }, [isTouchDevice]);
 
   return null;
 };
