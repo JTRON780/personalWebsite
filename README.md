@@ -9,7 +9,6 @@ Showcase the professional experience, projects, skills, and contact information 
 ## Features
 
 - Animated, section-based navigation (Home, Internships, Projects, Skills, Resume (PDF), Contact)
-- Custom animated cursor for desktop
 - Responsive design with mobile menu
 - Smooth scrolling and animated transitions (Framer Motion)
 - Contact form with email integration (Formspree)
@@ -97,6 +96,10 @@ npm run build
 - `src/data/profile.ts` – Centralized profile data (experience, projects, skills, awards)
 - `src/assets/` – Static assets
 - `.github/workflows/deploy.yml` – GitHub Actions deployment workflow
+
+## Known Issues
+
+- **Custom Cursor**: The custom animated cursor feature has been temporarily disabled due to implementation issues. The site currently uses the default browser cursor. This feature may be revisited in the future with a different implementation approach.
 
 ### Resume PDF
 
