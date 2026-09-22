@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { experience, awards, skillCategories, education } from '../data/profile'
+import { experience, awards, skillCategories, education, contact } from '../data/profile'
 
 interface ResumeItemProps {
   title: string;
@@ -34,19 +34,23 @@ const Resume = () => (
     <div className="max-w-4xl mx-auto bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl shadow-xl p-8 border border-gray-200 dark:border-gray-700">
       {/* Header */}
       <header className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-2">Johan Lakshmanan</h1>
+        <h1 className="text-4xl font-bold mb-2">{contact.name}</h1>
         <div className="text-gray-600 dark:text-gray-300 space-x-2">
-          <span>339-206-1334</span>
+          <span>{contact.phone}</span>
           <span>|</span>
-          <a href="mailto:jlakshmanan@umass.edu" className="text-indigo-600 dark:text-indigo-400 hover:underline">
-            jlakshmanan@umass.edu
+          <a href={`mailto:${contact.email}`} className="text-indigo-600 dark:text-indigo-400 hover:underline">
+            {contact.email}
           </a>
           <span>|</span>
-          <a href="https://linkedin.com/in/JLakshmanan" className="text-indigo-600 dark:text-indigo-400 hover:underline">
-            linkedin.com/in/JLakshmanan
+          <a href={contact.linkedin} className="text-indigo-600 dark:text-indigo-400 hover:underline">
+            {contact.linkedinDisplay}
           </a>
           <span>|</span>
-          <span>Amherst, MA</span>
+          <a href={contact.github} className="text-indigo-600 dark:text-indigo-400 hover:underline">
+            {contact.githubDisplay}
+          </a>
+          <span>|</span>
+          <span>{contact.location}</span>
         </div>
       </header>
 

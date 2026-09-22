@@ -4,7 +4,6 @@ import { experience } from '../data/profile'
 import {
   PresentationChartLineIcon,
   BeakerIcon,
-  BuildingLibraryIcon,
   ShieldCheckIcon,
   BriefcaseIcon,
   CubeIcon,
@@ -14,7 +13,6 @@ import {
 const getCompanyIcon = (company: string) => {
   if (company.includes('Fidelity')) return PresentationChartLineIcon;
   if (company.includes('Waters')) return BeakerIcon;
-  if (company.includes('Build UMass')) return BuildingLibraryIcon;
   if (company.includes('Lincoln')) return ShieldCheckIcon;
   if (company.includes('Roblox')) return CubeIcon;
   return BriefcaseIcon;

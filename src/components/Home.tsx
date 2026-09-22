@@ -36,7 +36,7 @@ const Home = ({ scrollToSection }: HomeProps) => (
         <span className="block text-base sm:text-lg md:text-xl text-holo-white min-h-[32px] font-space tracking-wide">
           <span className="text-neon-purple mr-2">&gt;</span>
           <Typewriter
-            words={['Developer', 'Student', 'Tech Enthusiast', 'Innovator', 'Artist', 'Software Engineer', 'Leader']}
+            words={['Developer', 'Infrastructure Engineer', 'Innovator', 'Software Engineer', 'Leader']}
             loop={0}
             cursor
             cursorStyle="_"

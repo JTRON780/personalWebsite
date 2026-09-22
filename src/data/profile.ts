@@ -1,6 +1,17 @@
 // Centralized profile data for site sections
 // NOTE: Update this file to propagate changes across Experience, Projects, Skills, Resume, etc.
 
+export interface ContactInfo {
+  name: string;
+  phone: string;
+  email: string;
+  linkedin: string;
+  linkedinDisplay: string;
+  github: string;
+  githubDisplay: string;
+  location: string;
+}
+
 export interface ExperienceBullet {
   text: string;
   highlights?: string[]; // phrases to emphasize
@@ -38,6 +49,18 @@ export interface AwardEntry {
   highlight?: boolean;
 }
 
+// CONTACT INFO — single source of truth for header, resume, about, etc.
+export const contact: ContactInfo = {
+  name: 'Johan Lakshmanan',
+  phone: '339-206-1334',
+  email: 'johan.lakshmanan@gmail.com', // TODO: update to your preferred personal email
+  linkedin: 'https://linkedin.com/in/JLakshmanan',
+  linkedinDisplay: 'linkedin.com/in/JLakshmanan',
+  github: 'https://github.com/JTRON780',
+  githubDisplay: 'github.com/JTRON780',
+  location: 'San Mateo, CA',
+};
+
 // EXPERIENCE
 export const experience: ExperienceEntry[] = [
   {
@@ -51,8 +74,8 @@ export const experience: ExperienceEntry[] = [
     bullets: [
       { text: 'Architected a bare-metal GPU provisioning platform supporting 15+ clusters powering GenAI workloads for Roblox\'s 70M+ daily users.' },
       { text: 'Eliminated 5+ min node boot penalties by pre-baking CUDA drivers with open kernel modules, preventing DKMS build collisions and version mismatches during weekly fleet patching.' },
-      { text: 'Automated GitHub Actions CI/CD on self-hosted runners, writing bash scripts to map PCI addresses, load vfio-pci modules, and validate GPU readiness for GenAI workloads.' },
-      { text: 'Built an AWS Kubernetes validation stack, resolving Nix environment constraints and operator nil-pointer bugs to successfully deploy the GPU Operator cascade for vLLM inference.' }
+      { text: 'Ensured GPU readiness for GenAI workloads by automating CI/CD validation on self-hosted GitHub Actions runners, writing bash scripts to map PCI addresses, load vfio-pci modules, and gate deployments on hardware checks.' },
+      { text: 'Built a Kubernetes GPU validation stack on AWS, deploying the NVIDIA GPU Operator cascade and vLLM inference pipelines to validate bare-metal provisioning workflows before production rollout.' }
     ]
   },
   {
@@ -60,12 +83,12 @@ export const experience: ExperienceEntry[] = [
     role: 'Quantitative Research Intern',
     description: 'Equity Trading | Systematic Trading and Analytics Platform',
     location: 'Boston, MA',
-    start: 'Jun. 2025',
-    end: 'Aug. 2025',
+    start: 'Jun 2025',
+    end: 'Aug 2025',
     bullets: [
-      { text: 'Piloted a model-driven trade router, scaling trade volume by 1.4x and saving $200K+ over 300+ hedge funds.' },
-      { text: 'Developed and integrated backend machine learning models in Python and Kdb+/Q to optimize routing for 25M+ trades, improving selection accuracy by 20% and reducing decision latency below 10 ms.' },
-      { text: 'Constructed automated training, deployment, and data pipelines on AWS EKS using Jenkins CI/CD with containerized microservices and MLflow, supporting reproducible model versioning and rollback in production.' }
+      { text: 'Piloted a model-driven trade router, scaling daily trade volume by 1.4x and saving $200K+ annually across 300+ hedge funds.' },
+      { text: 'Developed and integrated backend machine learning models in Python and Kdb+/Q to optimize routing for 25M+ daily trades, improving selection accuracy by 20% and reducing decision latency below 10 ms.' },
+      { text: 'Built automated ML training and deployment pipelines on AWS EKS with Jenkins CI/CD and containerized microservices, enabling reproducible model versioning and one-click rollback in production via MLflow.' }
     ]
   },
   {
@@ -74,25 +97,11 @@ export const experience: ExperienceEntry[] = [
     description: 'IT Development & SAP Systems',
     location: 'Milford, MA',
     start: 'May 2024',
-    end: 'Aug. 2024',
+    end: 'Aug 2024',
     bullets: [
-      { text: 'Engineered a full-stack automated renewal quote system using Python, RESTful APIs, and a responsive UI, reducing manual workload by 100+ hours monthly, streamlining sales operations.' },
-      { text: 'Designed multiple REST APIs to retrieve customer SharePoint resources by environment ID, decreasing mitigation times from hours to minutes for runtime incidents, reducing loads for on-call engineering teams.' },
+      { text: 'Engineered a full-stack automated renewal quote system using Python, RESTful APIs, and a responsive UI, reducing manual workload by 100+ hours monthly and streamlining sales operations.' },
+      { text: 'Designed REST APIs to retrieve customer SharePoint resources by environment ID, decreasing incident mitigation times from hours to minutes and reducing on-call engineering workload.' },
       { text: 'Developed high-concurrency C# modules to interface with SAP S/4HANA, optimizing SQL query execution and reducing transaction latency by 25%.' }
-    ]
-  },
-  {
-    company: 'Build UMass',
-    role: 'Software Engineer',
-    description: 'Full-Stack Development',
-    location: 'Amherst, MA',
-    start: 'Feb. 2024',
-    end: 'May. 2024',
-    logo: 'https://npr.brightspotcdn.com/ef/7b/c4150f41446c884292aab3e3b182/medium-pms-202.png',
-    bullets: [
-      { text: 'Led full-stack development of a consulting platform using MERN stack, deployed on Dockerized AWS EC2 with Nginx load balancing and GitHub Actions CI/CD.' },
-      { text: 'Rebuilt RESTful APIs with pagination, Redis caching, and profiling, reducing latency by 40% and supporting 5x higher concurrent request volumes.' },
-      { text: 'Partnered with designers to improve UI responsiveness and reduce load times by 20% for 200+ concurrent users.' }
     ]
   },
   {
@@ -101,19 +110,19 @@ export const experience: ExperienceEntry[] = [
     description: 'Cyber Security and Embedded Systems',
     location: 'Cambridge, MA',
     start: 'May 2021',
-    end: 'Aug. 2022',
+    end: 'Aug 2022',
     bullets: [
-      { text: 'Built a secure bootloader for Stellaris microcontrollers (C/Assembly) and designed penetration testing frameworks (Python/SQL), patching 16+ vulnerabilities and earning 1st place in the MITLL Cybersecurity Challenge.' }
+      { text: 'Engineered a secure bootloader for Stellaris ARM microcontrollers in C and Assembly, implementing cryptographic firmware verification and secure update chains.' },
+      { text: 'Designed Python and SQL penetration testing frameworks, identifying and patching 16+ vulnerabilities; earned 1st place in the MITLL Cybersecurity Challenge.' }
     ]
   }
-
 ];
 
 // PROJECTS
 export const projects: ProjectEntry[] = [
   {
     title: 'BTC Market Outlook',
-    description: 'Serverless Bitcoin sentiment dashboard tracking market sentiment via NLP (FinBERT) on news & Reddit. Automated on GitHub infrastructure.',
+    description: 'Serverless Bitcoin sentiment dashboard analyzing 500+ articles daily via NLP (FinBERT) across news & Reddit sources. Automated on GitHub infrastructure.',
     tech: ['Next.js', 'FastAPI', 'FinBERT', 'Python', 'Tailwind'],
     link: 'https://btc-delta-one.vercel.app',
     repo: 'https://github.com/jtron780/BTC',
@@ -121,16 +130,24 @@ export const projects: ProjectEntry[] = [
   },
   {
     title: 'IUCG Website',
-    description: 'Full-stack MERN application with optimized REST APIs and 30% performance improvement.',
+    description: 'Full-stack MERN consulting platform with optimized REST APIs, Redis caching, and 30% faster page loads for 200+ active users.',
     tech: ['React', 'Node.js', 'MongoDB', 'Express'],
     link: 'https://www.isenbergconsulting.com/',
     highlightMetric: '30% faster'
   },
   {
     title: 'GenAI Transportation ChatBot',
-    description: 'AI-powered chatbot for transportation queries using LangChain, FAISS vector database, and Streamlit interface.',
+    description: 'AI-powered chatbot for transportation queries using LangChain RAG over 50K+ transit records, FAISS vector search, and Streamlit interface.',
     tech: ['Python', 'LangChain', 'FAISS', 'Streamlit', 'Pandas'],
-    repo: 'https://github.com/JTRON780/Transportation-ChatBot'
+    repo: 'https://github.com/JTRON780/Transportation-ChatBot',
+    highlightMetric: 'RAG over 50K+ records'
+  },
+  {
+    title: 'Personal Portfolio',
+    description: 'Responsive developer portfolio with animated timeline, dark theme, and Vanta.js backgrounds. Built with React, TypeScript, and Tailwind CSS.',
+    tech: ['React', 'TypeScript', 'Tailwind', 'Framer Motion', 'Vite'],
+    repo: 'https://github.com/JTRON780/personalWebsite',
+    highlightMetric: 'Live Site'
   }
 ];
 
@@ -142,15 +159,15 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     title: 'Frameworks & Libraries',
-    items: ['React', 'Node.js', 'Express', 'Django', 'FastAPI', 'LangChain', 'FAISS', 'vLLM', 'MLflow', 'Pandas', 'Redis', 'Material-UI', 'REST APIs']
+    items: ['React', 'Node.js', 'Express', 'Django', 'FastAPI', 'LangChain', 'FAISS', 'vLLM', 'MLflow', 'Pandas', 'Redis', 'Tailwind CSS']
   },
   {
     title: 'Tools & Platforms',
-    items: ['AWS (EC2, EKS)', 'Docker', 'Kubernetes', 'Terraform', 'Jenkins', 'GitHub Actions', 'Nginx', 'Git', 'Google Cloud', 'Linux', 'Nix', 'CUDA', 'VMware', 'SAP S/4HANA', 'VS Code']
+    items: ['AWS (EC2, EKS, S3)', 'Docker', 'Kubernetes', 'Terraform', 'Jenkins', 'GitHub Actions', 'Nginx', 'Git', 'Google Cloud', 'Linux', 'Nix', 'CUDA', 'SAP S/4HANA']
   },
   {
     title: 'Core Skills',
-    items: ['Distributed Systems', 'GenAI Infrastructure', 'GPU Provisioning', 'LLM Serving', 'Networking', 'Microservices', 'JIRA', 'AI/ML', 'Software Design', 'Embedded Systems', 'Cloud Computing', 'Agile/Scrum']
+    items: ['Distributed Systems', 'GenAI Infrastructure', 'GPU Provisioning', 'LLM Serving', 'System Design', 'Microservices', 'AI/ML', 'Networking', 'Embedded Systems', 'Cloud Computing', 'Agile/Scrum']
   }
 ];
 
@@ -172,22 +189,17 @@ export const awards: AwardEntry[] = [
     title: 'National Cyber Scholar w/ Honors',
     description: 'Top 2% nationally; $500 scholarship award.',
     date: 'May 2023'
-  },
-  {
-    title: 'CyberPatriot 3× State Winner',
-    description: '1st in MA; Top 100 of 2000+ teams.',
-    date: '2020–2023'
   }
 ];
 
-// EDUCATION (optional future extraction)
+// EDUCATION
 export const education = {
   institution: 'University of Massachusetts, Amherst',
   degree: 'B.S. Computer Science',
   gpa: '3.7/4.0',
   honors: 'Dean\'s List',
   start: 'Aug 2023',
-  end: 'May 2026 (Graduated)',
+  end: 'May 2026',
   location: 'Amherst, MA',
   coursework: ['Operating Systems', 'Distributed Systems', 'Computer Networks', 'Algorithms', 'Machine Learning']
 };
