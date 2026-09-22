@@ -64,12 +64,24 @@ export const contact: ContactInfo = {
 // EXPERIENCE
 export const experience: ExperienceEntry[] = [
   {
+    company: 'Dell Technologies',
+    role: 'Software Engineer',
+    description: '',
+    location: 'Hopkinton, MA',
+    start: 'Aug. 2026',
+    end: 'Present',
+    bullets: [
+      { text: 'Working on microservices and Kubernetes-based infrastructure.' },
+      { text: 'Developing and maintaining cloud-native applications and services.' }
+    ]
+  },
+  {
     company: 'Roblox',
     role: 'Software Engineering Intern',
     description: 'Infra > Compute > Cell Lifecycle',
     location: 'San Mateo, CA',
     start: 'May 2026',
-    end: 'Present',
+    end: 'Aug. 2026',
     logo: 'https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/0/e/e/0eeeb19633422b1241f4306419a0f15f39d58de9.png',
     bullets: [
       { text: 'Architected a bare-metal GPU provisioning platform supporting 15+ clusters powering GenAI workloads for Roblox\'s 70M+ daily users.' },
@@ -120,6 +132,12 @@ export const experience: ExperienceEntry[] = [
 
 // PROJECTS
 export const projects: ProjectEntry[] = [
+  {
+    title: 'DRP Auto-Onboarding',
+    description: 'Automated onboarding system for DevSecOps Release Pipeline, streamlining microservice deployment across Kubernetes clusters with ArgoCD integration.',
+    tech: ['Kubernetes', 'ArgoCD', 'Go', 'Python', 'Docker'],
+    highlightMetric: 'Automated Deployment'
+  },
   {
     title: 'BTC Market Outlook',
     description: 'Serverless Bitcoin sentiment dashboard analyzing 500+ articles daily via NLP (FinBERT) across news & Reddit sources. Automated on GitHub infrastructure.',
@@ -176,7 +194,7 @@ export const awards: AwardEntry[] = [
   {
     title: 'Hack UMass — Best ML Hack',
     description: 'Winner of Best Machine Learning Hack at Hack UMass hackathon.',
-    date: 'Nov 2025',
+    date: 'Nov 2024',
     highlight: true
   },
   {

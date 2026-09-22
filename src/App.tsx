@@ -17,177 +17,14 @@ const LoadingSpinner = () => (
 )
 
 const CustomCursor = () => {
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-
-  useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
-
-    if (!isTouchDevice) {
-      // Create the ring cursor
-      const cursor = document.createElement('div');
-      cursor.className = 'custom-cursor-ring';
-      cursor.style.cssText = `
-        position: fixed;
-        width: 32px;
-        height: 32px;
-        border: 2px solid #00f3ff;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        top: 0;
-        left: 0;
-        transform: translate(-50%, -50%);
-        transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
-        display: none;
-        box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-      `;
-
-      // Create the dot cursor
-      const dot = document.createElement('div');
-      dot.className = 'custom-cursor-dot';
-      dot.style.cssText = `
-        position: fixed;
-        width: 4px;
-        height: 4px;
-        background-color: white;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9998;
-        top: 0;
-        left: 0;
-        transform: translate(-50%, -50%);
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-        display: none;
-      `;
-
-      document.body.appendChild(cursor);
-      document.body.appendChild(dot);
-
-      let cursorX = 0;
-      let cursorY = 0;
-      let targetX = 0;
-      let targetY = 0;
-      let requestAnimationId: number;
-
-      const moveCursor = (e: MouseEvent) => {
-        targetX = e.clientX;
-        targetY = e.clientY;
-        // Update dot position immediately via left/top to preserve CSS transform (-50%)
-        dot.style.left = `${targetX}px`;
-        dot.style.top = `${targetY}px`;
-      };
-
-      const handleMouseOver = () => {
-        cursor.style.borderWidth = '2px';
-        cursor.style.borderColor = '#bc13fe'; // Neon Purple on hover
-        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        cursor.style.backgroundColor = 'rgba(188, 19, 254, 0.1)';
-      };
-
-      const handleMouseOut = () => {
-        cursor.style.borderWidth = '2px';
-        cursor.style.borderColor = '#00f3ff'; // Back to Neon Cyan
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-        cursor.style.backgroundColor = 'transparent';
-      };
-
-      const lerp = (start: number, end: number, factor: number) => {
-        return start + (end - start) * factor;
-      };
-
-      const render = () => {
-        // Smoothly interpolate the ring position to the target (dot) position
-        cursorX = lerp(cursorX, targetX, 0.15); // Removed the -14 offset as we want center alignment
-        cursorY = lerp(cursorY, targetY, 0.15);
-        cursor.style.left = `${cursorX}px`;
-        cursor.style.top = `${cursorY}px`;
-        // We use left/top for position and transform for scale now
-
-        requestAnimationId = requestAnimationFrame(render);
-      };
-      requestAnimationId = requestAnimationFrame(render);
-
-      // Use event delegation for hover effect on all future and current clickable elements
-      const getClickable = (target: EventTarget | null): Element | null => {
-        if (!target || !(target instanceof Element)) return null;
-        return target.closest('button, a, input, textarea, [role="button"], [tabindex]:not([tabindex="-1"])');
-      };
-
-      const delegatedMouseOver = (e: MouseEvent) => {
-        const clickable = getClickable(e.target);
-        if (clickable) {
-          handleMouseOver();
-        }
-      };
-
-      const delegatedMouseOut = (e: MouseEvent) => {
-        const clickable = getClickable(e.target);
-        if (clickable) {
-          // Only shrink if we are actually leaving the clickable element (not entering a child)
-          if (!clickable.contains(e.relatedTarget as Node)) {
-            handleMouseOut();
-          }
-        }
-      };
-
-      document.addEventListener('mouseover', delegatedMouseOver);
-      document.addEventListener('mouseout', delegatedMouseOut);
-
-      document.addEventListener('mousemove', moveCursor);
-
-      // Show/hide cursor on mouse enter/leave
-      const showCursor = (e?: MouseEvent) => {
-        cursor.style.display = 'block';
-        dot.style.display = 'block';
-        if (e) {
-          targetX = e.clientX;
-          targetY = e.clientY;
-          dot.style.left = `${targetX}px`;
-          dot.style.top = `${targetY}px`;
-          cursorX = targetX;
-          cursorY = targetY;
-        }
-        document.documentElement.style.cursor = 'none';
-        document.body.style.cursor = 'none';
-      };
-      const hideCursor = () => {
-        cursor.style.display = 'none';
-        dot.style.display = 'none';
-      };
-      document.addEventListener('mouseenter', showCursor);
-      document.addEventListener('mouseleave', hideCursor);
-
-      const showOnFirstMove = (e: MouseEvent) => {
-        targetX = e.clientX;
-        targetY = e.clientY;
-        showCursor(e);
-        document.removeEventListener('mousemove', showOnFirstMove);
-      };
-      document.addEventListener('mousemove', showOnFirstMove);
-
-      // Hide cursor initially
-      cursor.style.display = 'none';
-      dot.style.display = 'none';
-
-      return () => {
-        cancelAnimationFrame(requestAnimationId);
-        document.removeEventListener('mousemove', moveCursor);
-        document.removeEventListener('mouseenter', showCursor);
-        document.removeEventListener('mouseleave', hideCursor);
-        document.removeEventListener('mouseover', delegatedMouseOver);
-        document.removeEventListener('mouseout', delegatedMouseOut);
-        document.body.removeChild(cursor);
-        document.body.removeChild(dot);
-        document.removeEventListener('mousemove', showOnFirstMove);
-      };
-    }
-  }, [isTouchDevice]);
-
+  // Custom cursor disabled for now
   return null;
 };
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const sectionIds = ['home', 'internships', 'projects', 'skills', 'resume', 'contact'];
 
   const scrollToSection = (id: string) => {
@@ -197,8 +34,22 @@ function App() {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   useEffect(() => {
     const handleScroll = () => {
+      // Calculate scroll progress
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(progress);
+
+      // Show/hide back to top button
+      setShowBackToTop(scrollTop > 500);
+
+      // Update active section
       const scrollPosition = window.scrollY + window.innerHeight / 3;
       let currentSection = sectionIds[0];
       for (const id of sectionIds) {
@@ -222,6 +73,29 @@ function App() {
     <div className="min-h-screen w-full bg-dark-900 bg-cyber-grid text-white relative">
       {/* Background Overlay for depth */}
       <div className="fixed inset-0 bg-gradient-to-b from-transparent via-dark-900/50 to-dark-900 pointer-events-none z-0" />
+
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-white/5 z-50">
+        <motion.div
+          className="h-full bg-gradient-to-r from-neon-cyan to-neon-purple"
+          style={{ width: `${scrollProgress}%` }}
+          transition={{ duration: 0.1 }}
+        />
+      </div>
+
+      {/* Back to Top Button */}
+      <motion.button
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: showBackToTop ? 1 : 0, scale: showBackToTop ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        onClick={scrollToTop}
+        className="fixed bottom-8 right-8 z-40 p-3 bg-neon-cyan/10 border border-neon-cyan/30 rounded-full hover:bg-neon-cyan/20 transition-colors group"
+        aria-label="Back to top"
+      >
+        <svg className="w-6 h-6 text-neon-cyan group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </motion.button>
 
       <CustomCursor />
 

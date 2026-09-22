@@ -15,6 +15,7 @@ const getCompanyIcon = (company: string) => {
   if (company.includes('Waters')) return BeakerIcon;
   if (company.includes('Lincoln')) return ShieldCheckIcon;
   if (company.includes('Roblox')) return CubeIcon;
+  if (company.includes('Dell')) return BriefcaseIcon;
   return BriefcaseIcon;
 }
 

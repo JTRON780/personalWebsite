@@ -7,26 +7,37 @@ interface ProjectCardProps {
   tech: string[];
   link?: string;
   repo?: string;
+  highlightMetric?: string;
 }
 
-const ProjectCard = ({ title, description, tech, link, repo }: ProjectCardProps) => (
+const ProjectCard = ({ title, description, tech, link, repo, highlightMetric }: ProjectCardProps) => (
   <motion.div
-    whileHover={{ y: -10, scale: 1.02 }}
+    whileHover={{ y: -10, scale: 1.02, rotateX: 2, rotateY: 2 }}
+    transition={{ duration: 0.3 }}
     className="group relative bg-dark-800/40 backdrop-blur-md rounded-xl p-6 border border-white/5 hover:border-neon-cyan/50 transition-colors duration-300 flex flex-col"
+    style={{ transformStyle: 'preserve-3d' }}
   >
-    <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 to-transparent opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300 pointer-events-none" />
+    <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 to-neon-purple/5 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300 pointer-events-none" />
 
-    <div className="relative z-10 flex flex-col h-full">
-      <h3 className="text-xl font-bold mb-3 text-white font-orbitron group-hover:text-neon-cyan transition-colors">{title}</h3>
+    <div className="relative z-10 flex flex-col h-full" style={{ transform: 'translateZ(20px)' }}>
+      <div className="flex items-start justify-between mb-3">
+        <h3 className="text-xl font-bold text-white font-orbitron group-hover:text-neon-cyan transition-colors">{title}</h3>
+        {highlightMetric && (
+          <span className="text-xs font-space text-neon-cyan bg-neon-cyan/10 border border-neon-cyan/20 px-2 py-1 rounded-full">
+            {highlightMetric}
+          </span>
+        )}
+      </div>
       <p className="text-gray-400 mb-4 font-space text-sm leading-relaxed flex-grow">{description}</p>
       <div className="flex flex-wrap gap-2 mb-6">
         {tech.map((item, index) => (
-          <span
+          <motion.span
             key={index}
-            className="bg-neon-blue/10 text-neon-blue/90 border border-neon-blue/20 text-xs px-3 py-1 rounded-sm font-space"
+            whileHover={{ scale: 1.1, backgroundColor: 'rgba(0, 243, 255, 0.2)' }}
+            className="bg-neon-blue/10 text-neon-blue/90 border border-neon-blue/20 text-xs px-3 py-1 rounded-sm font-space cursor-default"
           >
             {item}
-          </span>
+          </motion.span>
         ))}
       </div>
       <div className="flex flex-wrap items-center gap-6 mt-auto">
@@ -78,7 +89,7 @@ const Projects = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
-          <ProjectCard key={index} title={project.title} description={project.description} tech={project.tech} link={project.link} repo={project.repo} />
+          <ProjectCard key={index} title={project.title} description={project.description} tech={project.tech} link={project.link} repo={project.repo} highlightMetric={project.highlightMetric} />
         ))}
       </div>
     </motion.div>
