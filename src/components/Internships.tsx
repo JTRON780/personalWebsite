@@ -34,7 +34,6 @@ const ExperienceCard = ({ exp, index, onClick }: { exp: typeof experience[0], in
       {/* Content Side */}
       <div className={`w-5/12 ${isEven ? 'text-right pr-8' : 'text-left pl-8'}`}>
         <motion.div 
-          layoutId={`card-${exp.company}`}
           onClick={onClick}
           className="group cursor-pointer relative p-6 bg-dark-800/60 backdrop-blur-md border border-white/5 rounded-xl hover:border-neon-cyan/50 transition-colors duration-300 overflow-hidden"
         >
@@ -109,8 +108,11 @@ const Internships = () => {
     if (selectedId) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
     }
     return () => {
+      document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [selectedId]);
@@ -162,7 +164,10 @@ const Internships = () => {
                 const Icon = getCompanyIcon(exp.company);
                 return (
                   <motion.div
-                    layoutId={`card-${exp.company}`}
+                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                    transition={{ duration: 0.25, ease: 'easeOut' }}
                     className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto bg-dark-900 border border-neon-cyan/40 rounded-2xl p-6 md:p-10 shadow-2xl shadow-neon-cyan/20 pointer-events-auto"
                   >
                     <button 
