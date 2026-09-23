@@ -133,39 +133,26 @@ export const experience: ExperienceEntry[] = [
 // PROJECTS
 export const projects: ProjectEntry[] = [
   {
-    title: 'DRP Auto-Onboarding',
-    description: 'Automated onboarding system for DevSecOps Release Pipeline, streamlining microservice deployment across Kubernetes clusters with ArgoCD integration.',
-    tech: ['Kubernetes', 'ArgoCD', 'Go', 'Python', 'Docker'],
-    highlightMetric: 'Automated Deployment'
-  },
-  {
     title: 'BTC Market Outlook',
     description: 'Serverless Bitcoin sentiment dashboard analyzing 500+ articles daily via NLP (FinBERT) across news & Reddit sources. Automated on GitHub infrastructure.',
     tech: ['Next.js', 'FastAPI', 'FinBERT', 'Python', 'Tailwind'],
     link: 'https://btc-delta-one.vercel.app',
     repo: 'https://github.com/jtron780/BTC',
-    highlightMetric: 'Live NLP Sentiment'
+    highlightMetric: '500+ Articles/Day'
   },
   {
     title: 'IUCG Website',
     description: 'Full-stack MERN consulting platform with optimized REST APIs, Redis caching, and 30% faster page loads for 200+ active users.',
     tech: ['React', 'Node.js', 'MongoDB', 'Express'],
     link: 'https://www.isenbergconsulting.com/',
-    highlightMetric: '30% faster'
+    highlightMetric: '200+ Active Users'
   },
   {
     title: 'GenAI Transportation ChatBot',
     description: 'AI-powered chatbot for transportation queries using LangChain RAG over 50K+ transit records, FAISS vector search, and Streamlit interface.',
     tech: ['Python', 'LangChain', 'FAISS', 'Streamlit', 'Pandas'],
     repo: 'https://github.com/JTRON780/Transportation-ChatBot',
-    highlightMetric: 'RAG over 50K+ records'
-  },
-  {
-    title: 'Personal Portfolio',
-    description: 'Responsive developer portfolio with animated timeline, dark theme, and Vanta.js backgrounds. Built with React, TypeScript, and Tailwind CSS.',
-    tech: ['React', 'TypeScript', 'Tailwind', 'Framer Motion', 'Vite'],
-    repo: 'https://github.com/JTRON780/personalWebsite',
-    highlightMetric: 'Live Site'
+    highlightMetric: 'RAG Pipeline'
   }
 ];
 
