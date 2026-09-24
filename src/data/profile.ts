@@ -119,7 +119,7 @@ export const experience: ExperienceEntry[] = [
   {
     company: 'MIT Lincoln Laboratory',
     role: 'Embedded Systems Intern',
-    description: 'Cyber Security and Embedded Systems',
+    description: 'Cyber Security and Embedded Systems (Beaver Works Summer Institute - High School Internship)',
     location: 'Cambridge, MA',
     start: 'May 2021',
     end: 'Aug 2022',
@@ -204,7 +204,7 @@ export const education = {
   gpa: '3.7/4.0',
   honors: 'Dean\'s List',
   start: 'Aug 2023',
-  end: 'May 2026',
+  end: 'Sep 2026',
   location: 'Amherst, MA',
   coursework: ['Operating Systems', 'Distributed Systems', 'Computer Networks', 'Algorithms', 'Machine Learning']
 };
