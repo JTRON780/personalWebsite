@@ -10,7 +10,7 @@ const Navbar = ({ activeSection, scrollToSection }: NavbarProps) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
-    const sectionIds = ['home', 'internships', 'projects', 'skills', 'resume', 'contact'];
+    const sectionIds = ['home', 'experience', 'projects', 'skills', 'resume', 'contact'];
 
     // Handle scroll effect for navbar background depth
     useEffect(() => {

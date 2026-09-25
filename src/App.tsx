@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState, Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
+import StarfieldBackground from './components/StarfieldBackground'
+import ConstellationNavigation from './components/ConstellationNavigation'
 
 // Lazy load components
 const Home = lazy(() => import('./components/Home'))
@@ -25,7 +27,7 @@ function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const sectionIds = ['home', 'internships', 'projects', 'skills', 'resume', 'contact'];
+  const sectionIds = ['home', 'experience', 'projects', 'skills', 'resume', 'contact'];
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -71,8 +73,14 @@ function App() {
 
   return (
     <div className="min-h-screen w-full bg-dark-900 bg-cyber-grid text-white relative">
+      {/* Starfield Background */}
+      <StarfieldBackground />
+
       {/* Background Overlay for depth */}
       <div className="fixed inset-0 bg-gradient-to-b from-transparent via-dark-900/50 to-dark-900 pointer-events-none z-0" />
+
+      {/* Constellation Navigation */}
+      <ConstellationNavigation activeSection={activeSection} scrollToSection={scrollToSection} />
 
       {/* Scroll Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-1 bg-white/5 z-50">
@@ -109,7 +117,7 @@ function App() {
             </div>
           </section>
 
-          <section id="internships" className="min-h-screen w-full py-20 flex items-center justify-center px-4 sm:px-6 md:px-12">
+          <section id="experience" className="min-h-screen w-full py-20 flex items-center justify-center px-4 sm:px-6 md:px-12">
             <motion.div
               initial={{ opacity: 0, y: 50, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}

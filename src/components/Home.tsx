@@ -48,7 +48,7 @@ const Home = ({ scrollToSection }: HomeProps) => (
       </div>
       <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4 sm:mt-6 w-full">
         <button
-          onClick={() => scrollToSection('internships')}
+          onClick={() => scrollToSection('experience')}
           className="relative overflow-hidden text-sm sm:text-base px-6 sm:px-8 py-3 rounded-none border border-neon-cyan text-neon-cyan hover:bg-neon-cyan/10 transition-all duration-300 group"
         >
           <span className="absolute inset-0 w-0 bg-neon-cyan/20 transition-all duration-[250ms] ease-out group-hover:w-full"></span>
