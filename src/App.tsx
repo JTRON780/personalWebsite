@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { useEffect, useState, Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
 import StarfieldBackground from './components/StarfieldBackground'
-import ConstellationNavigation from './components/ConstellationNavigation'
 
 // Lazy load components
 const Home = lazy(() => import('./components/Home'))
@@ -78,9 +77,6 @@ function App() {
 
       {/* Background Overlay for depth */}
       <div className="fixed inset-0 bg-gradient-to-b from-transparent via-dark-900/50 to-dark-900 pointer-events-none z-0" />
-
-      {/* Constellation Navigation */}
-      <ConstellationNavigation activeSection={activeSection} scrollToSection={scrollToSection} />
 
       {/* Scroll Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-1 bg-white/5 z-50">
